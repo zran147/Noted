@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Note;
 
@@ -27,12 +27,7 @@ Route::get('/home', function () {
     ]);
 });
 
-Route::get('/notes', function () {
-    return view('notes', [
-        "title" => "Notes",
-        "notes" => Note::all()
-    ]);
-});
+Route::get('/notes', [NoteController::class, 'index']);
 
 Route::get('/login', function () {
     return view('login',);
@@ -52,13 +47,7 @@ Route::get('/transactions', function () {
 
 
 //halaman single notes
-Route::get('notes/{slug}', function($slug) {
-
-    return view('note', [
-        "title" => "Single note",
-        "note" => Note::find($slug)
-    ]);
-}); 
+Route::get('notes/{slug}', [NoteController::class, 'show']); 
 
 
 

@@ -20,17 +20,11 @@ class Note
     ];
 
     public static function all() {
-        return self::$notes;
+        return collect(self::$notes);
     }
 
     public static function find($slug) {
-        $notes = self::$notes;
-        $note = [];
-        foreach($notes as $n) {
-            if($n["slug"] === $slug) {
-                $note = $n;
-            }
-        }
-        return $note;
+        $notes = static::all();
+        return $notes -> firstWhere('slug', $slug);
     }
 }
