@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
-<article>
-    <h2>{{ $note["judul_note"] }}</h2>
-    <h5>{{ $note["excerpt_note"] }}</h5>
-    <p>{{ $note["isi_note"] }}</p>
-</article>
+<h1 class="mb-3">{{ $note->judul_note }}</h1>
 
-<a href="/notes">Back to notes</a>
+    {!! $note->isi_note !!}
+<h6>
+    <a href="/notes">Back to notes</a>
+</h6>
+
 @endsection
