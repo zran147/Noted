@@ -8,10 +8,9 @@
 
 <article class="mb-5">
     <h2>
-        <a href="/notes/{{ $note["slug"] }}">{{ $note["title"] }}</a>
+        <a href="/notes/{{ $note["slug"] }}">{{ $note["judul"] }}</a>
     </h2>
-    <h5>By: {{ $note["author"] }}</h5>
-    <h5>{{ $note["body"] }}</h5> 
+    <h5>{{ $note["isi_note"] }}</h5> 
 </article>
 
 @endforeach

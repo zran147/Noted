@@ -49,7 +49,13 @@ Route::get('/transactions', function () {
 //halaman single notes
 Route::get('notes/{slug}', [NoteController::class, 'show']); 
 
-
-
+Route::get('/test-database-connection', function () {
+    try {
+        DB::connection()->getPdo();
+        return "Database connection is successful.";
+    } catch (\Exception $e) {
+        return "Database connection failed: " . $e->getMessage();
+    }
+});
 
 
