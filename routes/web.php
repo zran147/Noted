@@ -1,7 +1,9 @@
 <?php
 use App\Http\Controllers\NoteController;
+use App\Models\Kategorinotes;
 use Illuminate\Support\Facades\Route;
 use App\Models\Note;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,17 @@ Route::get('/home', function () {
 Route::get('/notes', [NoteController::class, 'index']);
 Route::get('notes/{note:slug}', [NoteController::class, 'show']); 
 //note:slug -> di url jadinya pake slug nya
+ 
+
+Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorinotes) {
+    return view('category', [
+        'title' => $kategorinotes->nama,
+        'notes' => $kategorinotes->notes,
+        'kategorinotes' => $kategorinotes->nama
+    
+    ]);
+
+});
 
 Route::get('/login', function () {
     return view('login',);

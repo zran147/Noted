@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
-
-
+<article>
+    <h1 class="mb-5">Note Category : {{ $kategorinotes }}</h1>
+</article>
 
 @foreach($notes as $note)
-
 <article class="mb-5">
     <h2>
         <a href="/notes/{{ $note->slug }}">{{ $note->judul_note }}</a>
@@ -16,7 +16,6 @@
     <h5>{{ $note["excerpt_note"] }}</h4>
     <h6>{{ $note["isi_note"] }}</h6> 
 </article>
-
 @endforeach
  
 @endsection

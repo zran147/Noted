@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+ 
 return new class extends Migration
 {
     /**
@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_note');
+            $table->foreignId('kategorinotes_id')->constrained('kategorinotes');
+            $table->string('judul_note'); 
             $table->text('excerpt_note');
             //Slug akan menjadi URL
             $table->string('slug')->nullable()->unique();
