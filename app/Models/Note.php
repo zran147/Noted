@@ -9,5 +9,6 @@ class Note extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul_note', 'kategori_note', 'excerpt_note', 'isi_note'];
+    protected $fillable = ['judul_note', 'slug', 'kategori_note', 'excerpt_note', 'isi_note'];
+    protected $guarded = ['id'];
 }

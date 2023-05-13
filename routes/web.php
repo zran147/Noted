@@ -27,7 +27,10 @@ Route::get('/home', function () {
     ]);
 });
 
+//Route Notes dan single note
 Route::get('/notes', [NoteController::class, 'index']);
+Route::get('notes/{note:slug}', [NoteController::class, 'show']); 
+//note:slug -> di url jadinya pake slug nya
 
 Route::get('/login', function () {
     return view('login',);
@@ -46,8 +49,7 @@ Route::get('/transactions', function () {
 });
 
 
-//halaman single notes
-Route::get('notes/{slug}', [NoteController::class, 'show']); 
+
 
 Route::get('/test-database-connection', function () {
     try {

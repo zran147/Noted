@@ -8,7 +8,7 @@
 
 <article class="mb-5">
     <h2>
-        <a href="/notes/{{ $note->id }}">{{ $note->judul_note }}</a>
+        <a href="/notes/{{ $note->slug }}">{{ $note->judul_note }}</a>
     </h2>
     <h4>
         <a href=>{{ $note["kategori_note"] }}</a>

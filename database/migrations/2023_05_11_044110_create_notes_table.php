@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('judul_note');
             $table->text('excerpt_note');
+            //Slug akan menjadi URL
+            $table->string('slug')->nullable()->unique();
             $table->text('isi_note');
             $table->string('kategori_note')->default('Other');
             $table ->timestamp('tanggal_pembuatan_note')->nullable();

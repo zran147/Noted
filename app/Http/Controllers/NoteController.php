@@ -14,10 +14,11 @@ class NoteController extends Controller
         ]);
     }
 
-    public function show($slug) {
+    //Route model binding
+    public function show(Note $note) {
         return view('note', [
             "title" => "Single note",
-            "note" => Note::find($slug)
+            "note" => $note 
         ]);
     }
 }
