@@ -1,0 +1,41 @@
+Kategorinotes::create([
+    'nama'=>'Extracurricular',
+    'slug'=>'extracurricular'
+])
+
+Kategorinotes::create([
+    'nama' => 'Peronal',
+    'slug' => 'personal'
+]);
+
+KategoriNotes::create([
+    'nama_kategori' => 'Academic',
+    'slug' => 'academic'
+]);
+
+Note::create([
+    ''
+])
+
+Note::create([
+    'judul_note' => 'Strukdat Pekan 10',
+    'kategorinotes_id' => 1,
+    'slug' => 'strukdat-pekan-10',
+    'excerpt_note' => 'Test',
+    'kategori_note' => 'College',
+    'isi_note' => 'Catatan struktur data disimpan disini'
+]);
+
+
+Note::create([
+    'judul_note' => 'Pemrog Pekan 10',
+    'kategorinotes_id' => 1,
+    'slug' => 'pemrog-pekan-10',
+    'excerpt_note' => 'Java Inheritance',
+    'kategori_note' => 'College',
+    'isi_note' => 'Catatan pemrog disimpan disini'
+]);
+
+
+
+  

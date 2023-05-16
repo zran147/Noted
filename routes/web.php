@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\LoginController;
 use App\Models\Kategorinotes;
 use Illuminate\Support\Facades\Route;
 use App\Models\Note;
@@ -24,8 +25,9 @@ Route::get('/home', function () {
     return view('home', [
         //Key yang bisa dikirim langsung ke view
         "title" => "Dashboard",
-        "nama" => "Salma Nadhira",
-        "email" => "salmanadhira@apps.ipb.ac.id"
+        "active" => 'home'
+        // "nama" => "Salma Nadhira",
+        // "email" => "salmanadhira@apps.ipb.ac.id"
     ]);
 });
 
@@ -33,7 +35,6 @@ Route::get('/home', function () {
 Route::get('/notes', [NoteController::class, 'index']);
 Route::get('notes/{note:slug}', [NoteController::class, 'show']); 
 //note:slug -> di url jadinya pake slug nya
- 
 
 Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorinotes) {
     return view('category', [
@@ -45,9 +46,7 @@ Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorin
 
 });
 
-Route::get('/login', function () {
-    return view('login',);
-});
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/moneybox', function () {
     return view('moneybox', [

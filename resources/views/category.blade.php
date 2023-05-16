@@ -2,9 +2,13 @@
 
 @section('container')
 <article>
-    <h1 class="mb-5">Note Category : {{ $kategorinotes }}</h1>
+    <h1 class="mb-3">Note Category : {{ $kategorinotes }}</h1>
 </article>
 
+
+<h6>
+    <a href="/notes">Back to notes</a>
+</h6>
 @foreach($notes as $note)
 <article class="mb-5">
     <h2>
@@ -17,5 +21,7 @@
     <h6>{{ $note["isi_note"] }}</h6> 
 </article>
 @endforeach
+
+
  
 @endsection

@@ -8,9 +8,17 @@ use App\Models\Note;
 class NoteController extends Controller
 {
     public function index() {
+
+
+        // $notes = Note::latest();
+        // if(request('search')) {
+        //     $notes->where('judul_note', 'like', '%' . request('search') . '%')
+        //     -> orWhere('isi_note', 'like', '%' . request('search') . '%');
+        // }
         return view('notes', [
-            "title" => "Notes",
-            "notes" => Note::all()
+            "title" => "Notes", 
+            "active" => 'notes',
+            "notes" => Note::latest()->filter(request(['search']))->get()
         ]);
     }
 

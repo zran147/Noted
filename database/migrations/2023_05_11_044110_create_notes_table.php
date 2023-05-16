@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
- 
+
 return new class extends Migration
 {
     /**
@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kategorinotes_id')->constrained('kategorinotes');
             $table->string('judul_note'); 
             $table->text('excerpt_note');
-            //Slug akan menjadi URL
             $table->string('slug')->nullable()->unique();
             $table->text('isi_note');
             $table->string('kategori_note')->default('Other');
-            $table ->timestamp('tanggal_pembuatan_note')->nullable();
+            $table->timestamp('tanggal_pembuatan_note')->nullable();
+            $table->unsignedBigInteger('kategorinotes_id')->nullable();
+            $table->foreign('kategorinotes_id')->references('id')->on('kategorinotes');
             $table->timestamps();
-
+            DB::table('migrations')->insert([
+                'migration' => '2023_05_11_044110_create_notes_table',
+                'batch' => 1,
+            ]);
         });
     }
 
