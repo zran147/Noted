@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\LoginController;
 use App\Models\Kategorinotes;
@@ -47,6 +48,12 @@ Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorin
 });
 
 Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', [RegisterController::class, 'store']);
+
+
 
 Route::get('/moneybox', function () {
     return view('moneybox', [

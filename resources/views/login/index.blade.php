@@ -7,18 +7,21 @@
             <h1 class="h3 mb-3 fw-normal">Noted.</h1>
             <form>
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="Username">
+                <input type="username" class="form-control" id="floatingInput" placeholder="Username">
               </div>
               <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-              </div>
-              <div>
+              </div> 
+              <small class="d-block text-center mt-3"> Not Registered? <a href="/register"> Register Now</a>
+              </small>
+              {{-- <div>
                 <main>
                     <label for="donthaveaccount">Don't have an account?</label>
                 </main>
-              </div>
+              </div> --}}
 
-              <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>            </form>
+              <button class="w-100 btn btn-lg btn-primary" type="login">Login</button>
+            </form>
         </main>
     </div>
 </div>

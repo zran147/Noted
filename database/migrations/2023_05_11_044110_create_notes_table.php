@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('isi_note');
             $table->string('kategori_note')->default('Other');
             $table->timestamp('tanggal_pembuatan_note')->nullable();
-            $table->unsignedBigInteger('kategorinotes_id')->nullable();
-            $table->foreign('kategorinotes_id')->references('id')->on('kategorinotes');
+            // $table->unsignedBigInteger('kategorinotes_id')->nullable();
+            // $table->foreign('kategorinotes_id')->references('id')->on('kategorinotes');
             $table->timestamps();
             DB::table('migrations')->insert([
                 'migration' => '2023_05_11_044110_create_notes_table',
