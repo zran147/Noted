@@ -47,13 +47,25 @@ Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorin
 
 });
 
-Route::get('/login', [LoginController::class, 'index']);
+// Route::get('/login', [LoginController::class, 'index']);
+// Route::get('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/register', [RegisterController::class, 'index']);
+// Add a new login route with a different URL
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
 
+// Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+// Adjust the existing register route
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 
+// Route::get('/register', [RegisterController::class, 'index']);
+
+// Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/moneybox', function () {
     return view('moneybox', [
@@ -66,9 +78,6 @@ Route::get('/transactions', function () {
         "title" => "Transactions",
     ]);
 });
-
-
-
 
 Route::get('/test-database-connection', function () {
     try {

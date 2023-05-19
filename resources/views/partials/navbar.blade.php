@@ -20,17 +20,71 @@
             <a class="nav-link {{ ($title === "Notes") ? 'active' : ''  }}" href="/notes">Notes</a>
           </li>
         </ul>
- 
-
-        <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto">
+        @auth
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Hello, {{ auth()->user()->namalengkap }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <form action="">
+              <button type="submit" class="nav-item"><i class="bi bi-box-arrow-right"></i> Logout
+              </button>
+            </form>
+          </ul>
+        </li>
+        <form action="/logout" method="post">
+          @csrf
+          <li class="nav-item">
+            <a class="nav-link {{ ($title === "Logout") ? 'active' : ''  }}" href="/login"><i class="bi bi-box-arrow-right"></i> Logout  </a>
+          </li>
+        </form>
+        @else
           <li class="nav-item">
             <a href="/login" class="nav-link {{ ($title === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i>
               Login</a>
           </li>
-          
         </ul>
+        @endauth
       </div>
     </div>
   </nav>
+
+        {{-- <ul class="navbar-nav ms-auto">
+          @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Hello, {{ auth()->user()->namalengkap }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+              </li>
+            </ul>
+          </li>
+          @else
+            <li class="nav-item">
+              <a href="/login" class="nav-link {{ ($title === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i>
+                Login</a>
+            </li>
+          </ul>
+          @endauth
+        </ul>
+      </div>
+    </div>
+  </nav> --}}
   <!-- NAV BAR -->
   
