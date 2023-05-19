@@ -1,18 +1,48 @@
+@font-face {
+  font-family: Inder;
+  src: url(../fonts/Inder-Regular.ttf);
+}
 
-  .form-signin .form-floating:focus-within {
-    z-index: 2;
-  }
-  
-  .form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  
-  .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+@font-face {
+  font-family: Poppins;
+  src: url(../fonts/Poppins-Regular.ttf);
+}
+
+body {
+  background: #FFE6C7;
+  display: block;
+}
+
+.inder {
+  font-family: Inder;
+}
+
+.poppins {
+  font-family: Poppins;
+}
+
+.brown {
+  color: #454545;
+}
+
+.cream {
+  background: #FFE6C7
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
    

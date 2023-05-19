@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@include('partials.navbar')
 
 @section('container')
 <h1 class="mb-3">{{ $note->judul_note }}</h1>

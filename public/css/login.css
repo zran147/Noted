@@ -1,0 +1,43 @@
+body {
+    display: flex;
+}
+
+a {
+    color: #454545!important;
+}
+
+button {
+    background-color: #454545!important;
+    border-color: #454545!important;
+}
+
+button:focus {
+    box-shadow: 0 0 0 0.2rem #FFF!important;
+}
+
+.container {
+    align-self: center;
+}
+
+.form-control-md, .form-control-sm {
+    color: #454545!important;
+    border-radius: 5px!important;
+    border-color: #FFA559!important;
+}
+
+.form-control-md:focus, .form-control-sm:focus {
+    opacity: 60%;
+    box-shadow: 0 0 0 0.2rem #FFA559!important;
+}
+
+#noted {
+    font-family: Inder;
+    color: #454545;
+}
+
+#brown {
+    display: flex;
+    background-color: #454545;
+    height: 100%;
+    /* width: 150%; */
+}
