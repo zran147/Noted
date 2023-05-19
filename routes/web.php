@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeNotesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\LoginController;
@@ -31,6 +33,11 @@ Route::get('/home', function () {
         // "email" => "salmanadhira@apps.ipb.ac.id"
     ]);
 });
+
+// Route::get('/home', [HomeController::class, 'home'])->middleware('auth');
+Route::get('/home', function(){
+    return view('home');
+})->middleware('auth');
 
 //Route Notes dan single note
 Route::get('/notes', [NoteController::class, 'index']);
@@ -87,5 +94,8 @@ Route::get('/test-database-connection', function () {
         return "Database connection failed: " . $e->getMessage();
     }
 });
+
+// Route Resources
+Route::resource('home/notes', HomeNotesController::class)->middleware('auth');
 
 

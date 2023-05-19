@@ -199,6 +199,14 @@
       {{-- <canvas class="my-4 w-100" id="myChart" width="900" height="380">
       </canvas> --}}
 
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="note-judul">DPP</h5>
+          <p class="note-kategori">User Persona</p>
+          <a href="#" class="btn btn-primary stretched-link"></a>
+        </div>
+      </div>
+
       <h2>Section title</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
