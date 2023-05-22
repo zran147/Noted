@@ -23,4 +23,10 @@ class Note extends Model
         //Maunya 1 Note punya 1 Kategori
         return $this->belongsTo(Kategorinotes::class);
         }
+
+    public function user()
+        {
+            return $this->belongsTo(User::class);
+        }
+        
 }

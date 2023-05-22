@@ -16,30 +16,49 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::create([
-            'namalengkap' => 'Salma',
-            'email' => 'salma@gmail.com',
-            'password' => bcrypt('12345')
+        // User::create([
+        //     'namalengkap' => 'Salma',
+        //     'username' => 'salma123',
+        //     'email' => 'salma@gmail.com',
+        //     'password' => bcrypt('12345')
 
-        ]);
+        // ]);
 
-        Note::create([
+        // Note::create([
+        //     'judul_note' => 'Strukdat Pekan 10',
+        //     'kategorinotes_id' => 1,
+        //     'slug' => 'strukdat-pekan-10',
+        //     'excerpt_note' => 'Test',
+        //     'kategori_note' => 'College',
+        //     'isi_note' => 'Catatan struktur data disimpan disini'
+        // ]);
+        
+        
+        // Note::create([
+        //     'judul_note' => 'Pemrog Pekan 10',
+        //     'kategorinotes_id' => 1,
+        //     'slug' => 'pemrog-pekan-10',
+        //     'excerpt_note' => 'Java Inheritance',
+        //     'kategori_note' => 'College',
+        //     'isi_note' => 'Catatan pemrog disimpan disini'
+        // ]);
+
+        // Note::create([
+        //     'judul_note' => 'Notulensi Rapat',
+        //     'kategorinotes_id' => 2,
+        //     'slug' => 'notulensi',
+        //     'excerpt_note' => 'Notul rapat',
+        //     'kategori_note' => 'Personal',
+        //     'isi_note' => 'Notul rapat kemarin ditulis disini'
+        // ]);
+
+         Note::create([
             'judul_note' => 'Strukdat Pekan 10',
             'kategorinotes_id' => 1,
             'slug' => 'strukdat-pekan-10',
             'excerpt_note' => 'Test',
             'kategori_note' => 'College',
             'isi_note' => 'Catatan struktur data disimpan disini'
-        ]);
-        
-        
-        Note::create([
-            'judul_note' => 'Pemrog Pekan 10',
-            'kategorinotes_id' => 1,
-            'slug' => 'pemrog-pekan-10',
-            'excerpt_note' => 'Java Inheritance',
-            'kategori_note' => 'College',
-            'isi_note' => 'Catatan pemrog disimpan disini'
         ]);
 
 
@@ -52,17 +71,6 @@ class DatabaseSeeder extends Seeder
         //     'nama' => 'Personal',
         //     'slug' => 'personal',   
         // ]);
-
-        Note::create([
-            'judul_note' => 'Notulensi Rapat',
-            'kategorinotes_id' => 2,
-            'slug' => 'notulensi',
-            'excerpt_note' => 'Notul rapat',
-            'kategori_note' => 'Personal',
-            'isi_note' => 'Notul rapat kemarin ditulis disini'
-        ]);
-
-
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

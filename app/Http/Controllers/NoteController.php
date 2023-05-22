@@ -7,20 +7,13 @@ use App\Models\Note;
 
 class NoteController extends Controller
 {
-    public function index() {
-
-
-        // $notes = Note::latest();
-        // if(request('search')) {
-        //     $notes->where('judul_note', 'like', '%' . request('search') . '%')
-        //     -> orWhere('isi_note', 'like', '%' . request('search') . '%');
-        // }
-        return view('notes', [
-            "title" => "Notes", 
-            "active" => 'notes',
-            "notes" => Note::latest()->filter(request(['search']))->get()
-        ]);
-    }
+    // public function index() {
+    //     return view('notes', [
+    //         "title" => "Notes", 
+    //         "active" => 'notes',
+    //         "notes" => Note::latest()->filter(request(['search']))->get()
+    //     ]);
+    // }
 
     //Route model binding
     public function show(Note $note) {
@@ -29,4 +22,25 @@ class NoteController extends Controller
             "note" => $note 
         ]);
     }
+
+//     public function index() {
+//         $user = auth()->user();
+//         $notes = $user->notes;
+
+//         return view('notes', compact('notes'));
+// }
+
+public function index()
+{
+    $user = auth()->user();
+    $notes = $user->notes;
+
+    return view('notes', [
+        "title" => "Notes",
+        "active" => 'notes',
+        "notes" => $notes
+    ]);
+}
+
+
 }
