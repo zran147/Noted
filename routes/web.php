@@ -26,33 +26,30 @@ use App\Models\Note;
 
 Route::get('/home', function () {
     return view('home', [
-        //Key yang bisa dikirim langsung ke view
         "title" => "Dashboard",
         "active" => 'home'
-        // "nama" => "Salma Nadhira",
-        // "email" => "salmanadhira@apps.ipb.ac.id"
     ]);
 });
 
-// Route::get('/home', [HomeController::class, 'home'])->middleware('auth');
-Route::get('/home', function(){
-    return view('home');
-})->middleware('auth');
+// Route::get('/home', function(){
+//     return view('home');
+// })->middleware('auth');
 
 //Route Notes dan single note
 Route::get('/notes', [NoteController::class, 'index']);
 Route::get('notes/{note:slug}', [NoteController::class, 'show']); 
-//note:slug -> di url jadinya pake slug nya
 
 Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorinotes) {
+    $user = auth()->user();
+    $notes = $user->notes()->where('kategorinotes_id', $kategorinotes->id)->get();
+
     return view('category', [
         'title' => $kategorinotes->nama,
-        'notes' => $kategorinotes->notes,
+        'notes' => $notes,
         'kategorinotes' => $kategorinotes->nama
-    
     ]);
-
 });
+
 
 // Route::get('/login', [LoginController::class, 'index']);
 // Route::get('/login', [LoginController::class, 'authenticate']);
@@ -95,7 +92,16 @@ Route::get('/test-database-connection', function () {
     }
 });
 
+//Buat bikin slug otomatis
+Route::get('home/notes/checkSlug', [HomeNotesController::class, 'checkSlug'])->middleware('auth');
+
+
 // Route Resources
 Route::resource('home/notes', HomeNotesController::class)->middleware('auth');
 
+Route::get('/categories/academics', [NoteController::class, 'academics'])->name('academics');
+
+
+//Dynamic Routes
+Route::get('/categories/{category}', 'NoteController@notesByCategory');
 

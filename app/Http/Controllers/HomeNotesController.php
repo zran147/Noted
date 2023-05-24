@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Kategorinotes;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class HomeNotesController extends Controller
 {
@@ -20,7 +22,9 @@ class HomeNotesController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.notes.create', [
+            'kategori_notes' => Kategorinotes::all()
+        ]);
     }
 
     /**
@@ -28,7 +32,18 @@ class HomeNotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_note' => 'required|max:255',
+            'slug' => 'required|unique:notes',
+            'kategori_id' => 'required',
+            'isi_note' => 'required'
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Note::create($validatedData);
+
+        return redirect('/notes')->with('success', 'New note has been added!');
     }
 
     /**
@@ -61,5 +76,10 @@ class HomeNotesController extends Controller
     public function destroy(Note $note)
     {
         //
+    }
+
+    public function checkSlug(Request $request) {
+        $slug = SlugService::createSlug(Note::class, 'slug', $request->judul_note);
+        return response()->json(['slug' => $slug]);
     }
 }

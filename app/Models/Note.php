@@ -4,13 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Note extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul_note', 'slug', 'kategori_note', 'excerpt_note', 'isi_note', 'kategorinotes_id'];
+    protected $fillable = ['judul_note', 'slug', 'kategori_note', 'isi_note', 'kategorinotes_id'];
     protected $guarded = ['id'];
+
+    use Sluggable;
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'judul_note'
+            ]
+        ];
+    }
 
 
     public function scopeFilter($query, array $filters) {

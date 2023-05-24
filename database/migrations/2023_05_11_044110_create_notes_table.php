@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->string('judul_note'); 
-            $table->text('excerpt_note');
             $table->string('slug')->nullable()->unique();
             $table->text('isi_note');
             $table->string('kategori_note')->default('Other');
