@@ -23,7 +23,7 @@ class HomeNotesController extends Controller
     public function create()
     {
         return view('home.notes.create', [
-            'kategori_notes' => Kategorinotes::all()
+            'kategori_note' => Kategorinotes::all()
         ]);
     }
 
@@ -35,7 +35,8 @@ class HomeNotesController extends Controller
         $validatedData = $request->validate([
             'judul_note' => 'required|max:255',
             'slug' => 'required|unique:notes',
-            'kategori_id' => 'required',
+            // 'kategori_id' => 'required',
+            'kategori_note' => 'required',
             'isi_note' => 'required'
         ]);
 

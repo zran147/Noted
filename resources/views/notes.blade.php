@@ -46,8 +46,13 @@
                         <a href="/notes/{{ $note->slug }}" class="text-decoration-none">{{ $note->judul_note }}</a>
                     </h2>
                     <h4>
-                        <a href="/categories/{{ $note->kategorinotes->slug }}" class="text-decoration-none">{{ $note->kategorinotes->nama }}</a>
+                        @if ($note->kategorinotes)
+                            <a href="/categories/{{ $note->kategorinotes->slug }}" class="text-decoration-none">{{ $note->kategorinotes->nama }}</a>
+                        @else
+                            No Category Assigned
+                        @endif
                     </h4>
+                    
                 </div>
                 {{-- Edit button --}}
                 <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>

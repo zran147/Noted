@@ -10,7 +10,7 @@ class Note extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul_note', 'slug', 'kategori_note', 'isi_note', 'kategorinotes_id'];
+    protected $fillable = ['user_id', 'judul_note', 'slug', 'kategori_note', 'isi_note', 'kategorinotes_id'];
     protected $guarded = ['id'];
 
     use Sluggable;
@@ -24,17 +24,19 @@ class Note extends Model
         ];
     }
 
-
     public function scopeFilter($query, array $filters) {
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where('judul_note', 'like', '%' . $search . '%')
                     ->orWhere('isi_note', 'like', '%' . $search . '%');
         });
     }
-    public function kategorinotes() {
-        //Maunya 1 Note punya 1 Kategori
-        return $this->belongsTo(Kategorinotes::class);
-        }
+    public function kategorinotes()
+    {
+        return $this->belongsTo(Kategorinotes::class, 'kategori_note');
+    }
+    
+
+        
 
     public function user()
         {

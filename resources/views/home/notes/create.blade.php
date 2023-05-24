@@ -16,18 +16,18 @@
                     <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}">
                   </div>
                   <div class="mb-3">
-                    <label for="kategori_note" class="form-label">Slug</label>
-                    <select class="form-select" name="kategori_id">
-                        @foreach ($kategori_notes as $kategori)
-                        @if(old('kategori_id') == $kategori->id)
-                        <option value="{{$kategori->id }}" selected> {{ $kategori->nama }}</option>
-                        @else
-                        <option value="{{$kategori->id }}"> {{ $kategori->nama }}</option>
-                        @endif
+                    <label for="kategori_note" class="form-label">Category</label>
+                    <select class="form-select" name="kategori_note">
+                        @foreach ($kategori_note as $kategori)
+                            @if(old('kategori_note') == $kategori->id)
+                                <option value="{{$kategori->id }}" selected> {{ $kategori->nama }}</option>
+                            @else
+                                <option value="{{$kategori->id }}"> {{ $kategori->nama }}</option>
+                            @endif
                         @endforeach
                     </select>
-                  </div>
-
+                </div>
+                
                   <div class="mb-3">
                     <label for="isi_note" class="form-label">Isi Note</label>
                     <input id="isi_note" type="hidden" name="isi_note" value={{ old('isi_note')}}>

@@ -47,7 +47,6 @@ class DatabaseSeeder extends Seeder
         //     'judul_note' => 'Notulensi Rapat',
         //     'kategorinotes_id' => 2,
         //     'slug' => 'notulensi',
-        //     'excerpt_note' => 'Notul rapat',
         //     'kategori_note' => 'Personal',
         //     'isi_note' => 'Notul rapat kemarin ditulis disini'
         // ]);
@@ -56,7 +55,6 @@ class DatabaseSeeder extends Seeder
         //     'judul_note' => 'Strukdat Pekan 10',
         //     'kategorinotes_id' => 1,
         //     'slug' => 'strukdat-pekan-10',
-        //     'excerpt_note' => 'Test',
         //     'kategori_note' => 'College',
         //     'isi_note' => 'Catatan struktur data disimpan disini',
         //     'user_id' => 13
@@ -65,26 +63,20 @@ class DatabaseSeeder extends Seeder
         Note::create([
             'judul_note' => 'GKV Tugas Akhir',
             'kategorinotes_id' => 1,
+            'kategori_note' => 'Academics',
             'slug' => 'gkv-tugas-akhir',
-            'excerpt_note' => 'GKV disini',
-            'kategori_note' => 'College',
             'isi_note' => 'Catatan GKV disimpan disini',
             'user_id' => 13
         ]);
 
 
-        Note::create([
-            'judul_note' => 'Notulensi Rapim',
-            'kategorinotes_id' => 2,
-            'slug' => 'notulensi-rapim',
-            'excerpt_note' => 'Notul rapim disini',
-            'kategori_note' => 'Personal',
-            'isi_note' => 'Notul rapim',
-            'user_id' => 13
-        ]);
-
-
-
+        // Note::create([
+        //     'judul_note' => 'Notulensi Rapim',
+        //     'kategorinotes_id' => 2,
+        //     'slug' => 'notulensi-rapim',
+        //     'isi_note' => 'Notul rapim',
+        //     'user_id' => 13
+        // ]);
 
         // Kategorinotes::create([
         //     'nama' => 'Academics',
@@ -92,8 +84,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Kategorinotes::create([
-        //     'nama' => 'Personal',
-        //     'slug' => 'personal',   
+        //     'nama' => 'Himalkom',
+        //     'slug' => 'himalkom',   
+        // ]);
+
+        // Kategorinotes::create([
+        //     'nama' => 'Gemastik',
+        //     'slug' => 'Gemastik',   
         // ]);
 
         // \App\Models\User::factory()->create([
