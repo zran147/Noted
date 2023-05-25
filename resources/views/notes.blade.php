@@ -15,16 +15,15 @@
 <!-- Search Bar -->
 
 @if(session()->has('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-              </div>
-            @endif
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
+
 <!-- Section: Split screen -->
 <section class="">
     <div class="container-fluid px-0">
         <div class="row g-0">
-
-            
             <!-- First column -->
             <div class="col-lg-6 vh-100">
                 <div class="form-group">
@@ -34,40 +33,39 @@
                 </div>
             </div>
             <!-- First column -->
-        <!-- Second column -->
-        <div class="col-lg-6 vh-100">
-            {{-- @section('container') --}}
-            {{-- Create button --}}
-            <a href="{{ route('notes.create') }}" class="btn btn-primary">Create Note</a>
+            
+            <!-- Second column -->
+            <div class="col-lg-6 vh-100">
+                <a href="{{ route('notes.create') }}" class="btn btn-primary">Create Note</a>
 
-            @foreach($notes as $note)
-                <div href="/notes/{{ $note->slug }}" class="card" style="width: 18rem;">
-                    <h2>
-                        <a href="/notes/{{ $note->slug }}" class="text-decoration-none">{{ $note->judul_note }}</a>
-                    </h2>
-                    <h4>
-                        @if ($note->kategorinotes)
-                            <a href="/categories/{{ $note->kategorinotes->slug }}" class="text-decoration-none">{{ $note->kategorinotes->nama }}</a>
-                        @else
-                            No Category Assigned
-                        @endif
-                    </h4>
+                @foreach($notes as $note)
+                    <div href="/notes/{{ $note->slug }}" class="card" style="width: 18rem;">
+                        <h2>
+                            <a href="/notes/{{ $note->slug }}" class="text-decoration-none">{{ $note->judul_note }}</a>
+                        </h2>
+                        <h4>
+                            @if ($note->kategori_note)
+                                <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori_note }}</a>
+                            @else
+                                No Category Assigned
+                            @endif
+                        </h4>
+                        
+                    </div>
                     
-                </div>
-                {{-- Edit button --}}
-                <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>
-                {{-- Delete button --}}
-                <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </article>
-            @endforeach
-            {{-- @endsection --}}
+                    <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>
+
+                    <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    
+                    
+                @endforeach
+            </div>
+            <!-- Second column -->
         </div>
-        <!-- Second column -->
     </div>
-</div>
 </section>
 <!-- Section: Split screen -->

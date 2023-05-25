@@ -23,9 +23,10 @@ class HomeNotesController extends Controller
     public function create()
     {
         return view('home.notes.create', [
-            'kategori_note' => Kategorinotes::all()
+            'kategori_notes' => Kategorinotes::all()
         ]);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -35,17 +36,23 @@ class HomeNotesController extends Controller
         $validatedData = $request->validate([
             'judul_note' => 'required|max:255',
             'slug' => 'required|unique:notes',
-            // 'kategori_id' => 'required',
             'kategori_note' => 'required',
             'isi_note' => 'required'
         ]);
-
+    
         $validatedData['user_id'] = auth()->user()->id;
-
+    
+        // Retrieve the category ID based on the selected category's name
+        $kategori = Kategorinotes::where('nama', $request->kategori_note)->first();
+        if ($kategori) {
+            $validatedData['kategorinotes_id'] = $kategori->id;
+        }        
+        // dd($validatedData);
         Note::create($validatedData);
-
+    
         return redirect('/notes')->with('success', 'New note has been added!');
     }
+    
 
     /**
      * Display the specified resource.
@@ -60,24 +67,39 @@ class HomeNotesController extends Controller
      */
     public function edit(Note $note)
     {
-        //
+        return view('home.notes.edit', compact('note'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Note $note)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_note' => 'required|max:255',
+            'kategori_note' => 'nullable',
+            'isi_note' => 'required',
+        ]);
+    
+        $note->update($validatedData);
+    
+        return redirect('/notes')->with('success', 'Note has been updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Note $note)
+    public function destroy($id)
     {
-        //
+        $note = Note::findOrFail($id);
+        $note->delete();
+    
+        return redirect('/notes')->with('success', 'Note deleted successfully.');
     }
+    
+    
 
     public function checkSlug(Request $request) {
         $slug = SlugService::createSlug(Note::class, 'slug', $request->judul_note);

@@ -18,15 +18,16 @@
                   <div class="mb-3">
                     <label for="kategori_note" class="form-label">Category</label>
                     <select class="form-select" name="kategori_note">
-                        @foreach ($kategori_note as $kategori)
-                            @if(old('kategori_note') == $kategori->id)
-                                <option value="{{$kategori->id }}" selected> {{ $kategori->nama }}</option>
+                        @foreach ($kategori_notes as $kategori)
+                            @if (old('kategori_note') == $kategori->id)
+                                <option value="{{ $kategori->nama }}" selected>{{ $kategori->nama }}</option>
                             @else
-                                <option value="{{$kategori->id }}"> {{ $kategori->nama }}</option>
+                                <option value="{{ $kategori->nama }}">{{ $kategori->nama }}</option>
                             @endif
                         @endforeach
                     </select>
                 </div>
+                
                 
                   <div class="mb-3">
                     <label for="isi_note" class="form-label">Isi Note</label>

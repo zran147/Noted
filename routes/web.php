@@ -39,6 +39,7 @@ Route::get('/home', function () {
 Route::get('/notes', [NoteController::class, 'index']);
 Route::get('notes/{note:slug}', [NoteController::class, 'show']); 
 
+
 Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorinotes) {
     $user = auth()->user();
     $notes = $user->notes()->where('kategorinotes_id', $kategorinotes->id)->get();
@@ -98,8 +99,10 @@ Route::get('home/notes/checkSlug', [HomeNotesController::class, 'checkSlug'])->m
 
 // Route Resources
 Route::resource('home/notes', HomeNotesController::class)->middleware('auth');
+Route::delete('/notes/{id}', [HomeNotesController::class, 'destroy'])->name('notes.destroy');
 
 Route::get('/categories/academics', [NoteController::class, 'academics'])->name('academics');
+
 
 
 //Dynamic Routes
