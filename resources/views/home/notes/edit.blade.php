@@ -7,22 +7,37 @@
     <form action="{{ route('notes.update', $note->id) }}" method="POST">
         @csrf
         @method('PUT')
-        
+
         <div class="mb-3">
-            <label for="judul_note" class="form-label">Title</label>
-            <input type="text" class="form-control" id="judul_note" name="judul_note" value="{{ $note->judul_note }}" required>
+            <label for="judul_note" class="form-label">Judul Note</label>
+            <input type="text" class="form-control @error('judul_note') is-invalid @enderror" id="judul_note" name="judul_note" required autofocus value="{{ old('judul_note', $note->judul_note) }}">
+            @error('judul_note')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        
+
+        <div class="mb-3">
+            <input type="hidden" id="slug" name="slug" value="{{ old('slug', $note->slug) }}">
+        </div>
+
         <div class="mb-3">
             <label for="kategori_note" class="form-label">Category</label>
-            <input type="text" class="form-control" id="kategori_note" name="kategori_note" value="{{ $note->kategori_note }}">
+            <select class="form-select @error('kategori_note') is-invalid @enderror" name="kategori_note" id="kategori_note">
+                @foreach ($kategori_notes as $kategori)
+                    <option value="{{ $kategori->nama }}" @if (old('kategori_note', $note->kategori_note) == $kategori->nama) selected @endif>{{ $kategori->nama }}</option>
+                @endforeach
+            </select>
+            @error('kategori_note')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        
+
         <div class="mb-3">
-            <label for="isi_note" class="form-label">Content</label>
-            <textarea class="form-control" id="isi_note" name="isi_note" rows="5" required>{{ $note->isi_note }}</textarea>
+            <label for="isi_note" class="form-label">Isi Note</label>
+            <input id="isi_note" type="hidden" name="isi_note" value="{{ old('isi_note', $note->isi_note) }}">
+            <trix-editor input="isi_note"></trix-editor>
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection

@@ -15,9 +15,9 @@
 <!-- Search Bar -->
 
 @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success" role="alert">
+    {{ session('success') }}
+</div>
 @endif
 
 <!-- Section: Split screen -->
@@ -33,26 +33,26 @@
                 </div>
             </div>
             <!-- First column -->
-            
+
             <!-- Second column -->
             <div class="col-lg-6 vh-100">
                 <a href="{{ route('notes.create') }}" class="btn btn-primary">Create Note</a>
 
                 @foreach($notes as $note)
-                    <div href="/notes/{{ $note->slug }}" class="card" style="width: 18rem;">
-                        <h2>
-                            <a href="/notes/{{ $note->slug }}" class="text-decoration-none">{{ $note->judul_note }}</a>
-                        </h2>
-                        <h4>
-                            @if ($note->kategori_note)
-                                <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori_note }}</a>
-                            @else
-                                No Category Assigned
-                            @endif
-                        </h4>
-                        
+                <div href="/notes/{{ $note->slug }}" class="card" style="width: 18rem;">
+                    <h2>
+                        <a href="/notes/{{ $note->slug }}" class="text-decoration-none">{{ $note->judul_note }}</a>
+                    </h2>
+                    <h4>
+                        @if ($note->kategori_note)
+                        <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori_note }}</a>
+                        @else
+                        No Category Assigned
+                        @endif
+                    </h4>
+                    <div>
+                        <p>{{ $note->updated_at->format('j F') }}</p>
                     </div>
-                    
                     <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>
 
                     <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
@@ -60,12 +60,13 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    
-                    
+                </div>
                 @endforeach
+
             </div>
             <!-- Second column -->
         </div>
     </div>
 </section>
 <!-- Section: Split screen -->
+

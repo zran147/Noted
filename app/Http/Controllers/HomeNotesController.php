@@ -64,11 +64,12 @@ class HomeNotesController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     */
-    public function edit(Note $note)
-    {
-        return view('home.notes.edit', compact('note'));
-    }
+     */public function edit(Note $note)
+{
+    $kategori_notes = Kategorinotes::all(); 
+    return view('home.notes.edit', compact('note', 'kategori_notes'));
+}
+
     
 
     /**

@@ -1,10 +1,12 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeNotesController;
+use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\LoginController;
 use App\Models\Kategorinotes;
+use App\Models\Kategoripemasukan;
 use Illuminate\Support\Facades\Route;
 use App\Models\Note;
 
@@ -20,10 +22,6 @@ use App\Models\Note;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/home', function () {
     return view('home', [
         "title" => "Dashboard",
@@ -31,9 +29,14 @@ Route::get('/home', function () {
     ]);
 });
 
-// Route::get('/home', function(){
-//     return view('home');
-// })->middleware('auth');
+// Add a new login route with a different URL
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 //Route Notes dan single note
 Route::get('/notes', [NoteController::class, 'index']);
@@ -51,26 +54,15 @@ Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorin
     ]);
 });
 
-
-// Route::get('/login', [LoginController::class, 'index']);
-// Route::get('/login', [LoginController::class, 'authenticate']);
-
-// Add a new login route with a different URL
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-
-// Route::post('/logout', [LoginController::class, 'logout']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route Transactions and single transactions:
+Route::get('/transactions', [PemasukanController::class, 'index'])->name('transactions');
+Route::get('/transactions/create', [PemasukanController::class, 'create'])->name('pemasukan.create');
+Route::get('/transactions/{pemasukan}/edit', [PemasukanController::class, 'edit'])->name('transactions.edit');
+Route::post('/transactions', [PemasukanController::class, 'store'])->name('pemasukan.store');
+Route::get('/transactions/{pemasukan}', [PemasukanController::class, 'show']);
+Route::delete('/transactions/{id}', [PemasukanController::class, 'destroy'])->name('pemasukan.destroy');
 
 
-// Adjust the existing register route
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
-
-
-// Route::get('/register', [RegisterController::class, 'index']);
-
-// Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/moneybox', function () {
     return view('moneybox', [
@@ -78,11 +70,11 @@ Route::get('/moneybox', function () {
     ]);
 });
 
-Route::get('/transactions', function () {
-    return view('transactions', [
-        "title" => "Transactions",
-    ]);
-});
+// Route::get('/transactions', function () {
+//     return view('transactions', [
+//         "title" => "Transactions",
+//     ]);
+// });
 
 Route::get('/test-database-connection', function () {
     try {
@@ -93,17 +85,14 @@ Route::get('/test-database-connection', function () {
     }
 });
 
-//Buat bikin slug otomatis
+//Buat bikin slug otomatis w/ HomeNotesController
 Route::get('home/notes/checkSlug', [HomeNotesController::class, 'checkSlug'])->middleware('auth');
 
 
 // Route Resources
 Route::resource('home/notes', HomeNotesController::class)->middleware('auth');
 Route::delete('/notes/{id}', [HomeNotesController::class, 'destroy'])->name('notes.destroy');
-
 Route::get('/categories/academics', [NoteController::class, 'academics'])->name('academics');
-
-
 
 //Dynamic Routes
 Route::get('/categories/{category}', 'NoteController@notesByCategory');

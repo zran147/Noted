@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -17,12 +18,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'namalengkap',
-    //     'username',
-    //     'email',
-    //     'password',
-    // ];
+    protected $fillable = [
+        'namalengkap',
+        'username',
+        'email',
+        'password',
+        'saldo'
+    ];
 
     //Yg engga boleh diisi
     protected $guarded = ['id'];
@@ -49,4 +51,22 @@ class User extends Authenticatable
     public function notes() {
         return $this->hasMany(Note::class);
     }
+
+    public function pemasukan(): HasMany
+    {
+        return $this->hasMany(Pemasukan::class, 'userspemasukan_id');
+    }
+
+
+    public function updateSaldo()
+    {
+        $totalPemasukan = $this->pemasukan()->sum('pemasukan_nominal');
+        // $totalPengeluaran = $this->pengeluaran()->sum('pengeluaran_nominal');
+        // $this->saldo = $totalPemasukan - $totalPengeluaran;
+        $this->save();
+    }
+
+    
+    
+    
 }

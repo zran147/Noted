@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Pemasukan;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Note;
 use App\Models\Kategorinotes;
+use App\Models\Kategoripemasukan;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -60,14 +62,14 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => 13
         // ]);
 
-        Note::create([
-            'judul_note' => 'GKV Tugas Akhir',
-            'kategorinotes_id' => 1,
-            'kategori_note' => 'Academics',
-            'slug' => 'gkv-tugas-akhir',
-            'isi_note' => 'Catatan GKV disimpan disini',
-            'user_id' => 13
-        ]);
+        // Note::create([
+        //     'judul_note' => 'GKV Tugas Akhir',
+        //     'kategorinotes_id' => 1,
+        //     'kategori_note' => 'Academics',
+        //     'slug' => 'gkv-tugas-akhir',
+        //     'isi_note' => 'Catatan GKV disimpan disini',
+        //     'user_id' => 13
+        // ]);
 
 
         // Note::create([
@@ -97,5 +99,35 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // Kategoripemasukan::create([
+        //     'nama' => 'Bisnis',
+        //     'slug' => 'bisnis',   
+        // ]);
+
+        // Kategoripemasukan::create([
+        //     'nama' => 'Beasiswa',
+        //     'slug' => 'Beasiswa',   
+        // ]);
+
+        // Kategoripemasukan::create([
+        //     'nama' => 'Orang tua',
+        //     'slug' => 'orang-tua',   
+        // ]);
+
+        // Pemasukan::create([
+        //     'userspemasukan_id' => 13,
+        //     'judul_pemasukan' => 'Gaji bulan Mei',
+        //     'kategoripemasukan_id' => 2,
+        //     'pemasukan_nominal' => 50000,
+        // ]);
+
+        Pemasukan::create([
+            'userspemasukan_id' => 13,
+            'judul_pemasukan' => 'Hasil Danus',
+            'kategoripemasukan_id' => 1,
+            'pemasukan_nominal' => 100000,
+        ]);
     }
 }
+

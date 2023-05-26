@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @section('before')
     @include('partials.navbar', ['title' => 'Home'])
 @endsection
@@ -19,7 +20,6 @@
     <h1>Noted.</h1>
 
     <section class="">
-
         <div class="container-fluid px-0">
             <div class="row g-0">
 
@@ -42,7 +42,11 @@
                                 Saldo
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Rp. 728.500</h5>
+                                @auth
+                                    {{-- <h5 class="card-title">Rp. {{ auth()->user()->updateSaldo()->saldo }}</h5> --}}
+                                @else
+                                    <p>Please log in to view your saldo.</p>
+                                @endauth
                                 <a href="/transactions" class="btn btn-primary">Transactions</a>
                                 <a href="/moneybox" class="btn btn-primary">MoneyBox</a>
                             </div>
@@ -60,7 +64,6 @@
 
             </div>
         </div>
-
     </section>
 
 @endsection

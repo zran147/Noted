@@ -16,18 +16,6 @@
         </div>
     @endif
 
-    <h1>Noted.</h1>
-
-    {{-- Bootstrap Dashboard Mulai --}}
-
-      {{-- <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="note-judul">DPP</h5>
-          <p class="note-kategori">User Persona</p>
-          <a href="#" class="btn btn-primary stretched-link"></a>
-        </div>
-      </div> --}}
-
-      
+    <h1>Noted.</h1>  
       
 @endsection
