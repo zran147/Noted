@@ -25,29 +25,31 @@
         </div>
 
         <div class="col-lg-6 vh-100 order-lg-last">
-            <a href="{{ route('pemasukan.create') }}" class="btn btn-primary">New Pemasukan</a>
+            <a href="{{ route('transaksi.create') }}" class="btn btn-primary">New transaksi</a>
 
-            @foreach ($pemasukans as $pemasukan)
-                <div href="/transactions/{{ $pemasukan->slug }}" class="card" style="width: 18rem;">
+            @foreach ($transaksis as $transaksi)
+                <div href="/transactions/{{ $transaksi->slug }}" class="card" style="width: 18rem;">
                     <h2>
-                        <a href="/transactions/{{ $pemasukan->slug }}" class="text-decoration-none">{{ $pemasukan->judul_pemasukan }}</a>
+                        <a href="/transactions/{{ $transaksi->slug }}" class="text-decoration-none">{{ $transaksi->judul_transaksi }}</a>
                     </h2>
                     <h2>
-                        <a class="text-decoration-none">{{ number_format($pemasukan->pemasukan_nominal, 2, ',', '.') }}</a>
+                        <a class="text-decoration-none {{ $transaksi->jenis_transaksi === 'pemasukan' ? 'text-success' : 'text-danger' }}">
+                            {{ number_format($transaksi->nominal_transaksi, 2, ',', '.') }}
+                        </a>
                     </h2>
                     <h4>
-                        @if ($pemasukan->kategoripemasukan)
-                            <a href="/categories/{{ $pemasukan->kategoripemasukan }}" class="text-decoration-none">{{ $pemasukan->kategoripemasukan }}</a>
+                        @if ($transaksi->kategoritransaksi)
+                            <a href="/categories/{{ $transaksi->kategoritransaksi }}" class="text-decoration-none">{{ $transaksi->kategoritransaksi }}</a>
                         @else
                             No Category Assigned
                         @endif
                     </h4>
                     <div>
-                        <p>{{ $pemasukan->updated_at->format('j F') }}</p>
+                        <p>{{ $transaksi->updated_at->format('j F') }}</p>
                     </div>
-                    <a href="{{ route('transactions.edit', $pemasukan->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('transactions.edit', $transaksi->id) }}" class="btn btn-primary">Edit</a>
 
-                    <form action="{{ route('pemasukan.destroy', $pemasukan->id) }}" method="POST">
+                    <form action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -57,4 +59,3 @@
         </div>
     </div>
 @endsection
-

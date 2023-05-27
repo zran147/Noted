@@ -1,12 +1,13 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeNotesController;
-use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\transaksiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use App\Models\Kategorinotes;
-use App\Models\Kategoripemasukan;
+use App\Models\Kategoritransaksi;
 use Illuminate\Support\Facades\Route;
 use App\Models\Note;
 
@@ -22,12 +23,14 @@ use App\Models\Note;
 |
 */
 
-Route::get('/home', function () {
-    return view('home', [
-        "title" => "Dashboard",
-        "active" => 'home'
-    ]);
-});
+// Route::get('/home', function () {
+//     return view('home', [
+//         "title" => "Dashboard",
+//         "active" => 'home'
+//     ]);
+// });
+
+Route::get('/home', [UserController::class, 'showHomePage'])->name('home');
 
 // Add a new login route with a different URL
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
@@ -55,12 +58,12 @@ Route::get('/categories/{kategorinotes:slug}', function(Kategorinotes $kategorin
 });
 
 // Route Transactions and single transactions:
-Route::get('/transactions', [PemasukanController::class, 'index'])->name('transactions');
-Route::get('/transactions/create', [PemasukanController::class, 'create'])->name('pemasukan.create');
-Route::get('/transactions/{pemasukan}/edit', [PemasukanController::class, 'edit'])->name('transactions.edit');
-Route::post('/transactions', [PemasukanController::class, 'store'])->name('pemasukan.store');
-Route::get('/transactions/{pemasukan}', [PemasukanController::class, 'show']);
-Route::delete('/transactions/{id}', [PemasukanController::class, 'destroy'])->name('pemasukan.destroy');
+Route::get('/transactions', [TransaksiController::class, 'index'])->name('transactions');
+Route::get('/transactions/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+Route::get('/transactions/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('transactions.edit');
+Route::post('/transactions', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::get('/transactions/{transaksi}', [TransaksiController::class, 'show']);
+Route::delete('/transactions/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
 
 

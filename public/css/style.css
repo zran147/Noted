@@ -50,4 +50,13 @@ body {
   /* Add your desired styles here */
 }
 
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
    

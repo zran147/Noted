@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kategoripemasukan extends Model
+class Kategoritransaksi extends Model
 {
     use HasFactory;
 
     protected $fillable = ['nama', 'slug'];
 
     protected $guarded = ['id'];
-    protected $table = 'kategoripemasukan';
+    protected $table = 'kategoritransaksi';
 
 
-    public function pemasukan() {
-        return $this->hasMany(Pemasukan::class);
+    public function transaksi() {
+        return $this->hasMany(Transaksi::class);
     }
 }

@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Pemasukan;
+use App\Models\Transaksi;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Note;
 use App\Models\Kategorinotes;
-use App\Models\Kategoripemasukan;
+use App\Models\Kategoritransaksi;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -122,11 +122,12 @@ class DatabaseSeeder extends Seeder
         //     'pemasukan_nominal' => 50000,
         // ]);
 
-        Pemasukan::create([
-            'userspemasukan_id' => 13,
-            'judul_pemasukan' => 'Hasil Danus',
-            'kategoripemasukan_id' => 1,
-            'pemasukan_nominal' => 100000,
+        Transaksi::create([
+            'userstransaksi_id' => 13,
+            'judul_transaksi' => 'Hasil Danus',
+            'kategoritransaksi_id' => 1,
+            'jenis_transaksi' => 'pemasukan',
+            'nominal_transaksi' => 100000,
         ]);
     }
 }

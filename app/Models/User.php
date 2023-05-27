@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,7 +25,7 @@ class User extends Authenticatable
         'saldo'
     ];
 
-    //Yg engga boleh diisi
+    // Attributes that should be guarded
     protected $guarded = ['id'];
 
     /**
@@ -48,25 +47,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function notes() {
+    public function notes()
+    {
         return $this->hasMany(Note::class);
     }
 
-    public function pemasukan(): HasMany
+    public function transaksi(): HasMany
     {
-        return $this->hasMany(Pemasukan::class, 'userspemasukan_id');
+        return $this->hasMany(Transaksi::class, 'userstransaksi_id');
     }
-
 
     public function updateSaldo()
-    {
-        $totalPemasukan = $this->pemasukan()->sum('pemasukan_nominal');
-        // $totalPengeluaran = $this->pengeluaran()->sum('pengeluaran_nominal');
-        // $this->saldo = $totalPemasukan - $totalPengeluaran;
-        $this->save();
-    }
-
-    
-    
-    
+{
+    $totalPemasukan = $this->transaksi()->where('jenis_transaksi', 'pemasukan')->sum('nominal_transaksi');
+    $totalPengeluaran = $this->transaksi()->where('jenis_transaksi', 'pengeluaran')->sum('nominal_transaksi');
+    $this->saldo = $totalPemasukan - $totalPengeluaran;
+    $this->save();
+}
 }

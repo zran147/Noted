@@ -42,11 +42,7 @@
                                 Saldo
                             </div>
                             <div class="card-body">
-                                @auth
-                                    {{-- <h5 class="card-title">Rp. {{ auth()->user()->updateSaldo()->saldo }}</h5> --}}
-                                @else
-                                    <p>Please log in to view your saldo.</p>
-                                @endauth
+                                <p class="text-decoration-none">{{ number_format($saldo, 2, ',', '.') }}</p>
                                 <a href="/transactions" class="btn btn-primary">Transactions</a>
                                 <a href="/moneybox" class="btn btn-primary">MoneyBox</a>
                             </div>
