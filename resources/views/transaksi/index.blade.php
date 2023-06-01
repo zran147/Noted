@@ -30,7 +30,9 @@
             @foreach ($transaksis as $transaksi)
                 <div href="/transactions/{{ $transaksi->slug }}" class="card" style="width: 18rem;">
                     <h2>
-                        <a href="/transactions/{{ $transaksi->slug }}" class="text-decoration-none">{{ $transaksi->judul_transaksi }}</a>
+                        <a 
+                        {{-- href="/transactions/{{ $transaksi->slug }}"  --}}
+                            class="text-decoration-none">{{ $transaksi->judul_transaksi }}</a>
                     </h2>
                     <h2>
                         <a class="text-decoration-none {{ $transaksi->jenis_transaksi === 'pemasukan' ? 'text-success' : 'text-danger' }}">
@@ -47,7 +49,7 @@
                     <div>
                         <p>{{ $transaksi->updated_at->format('j F') }}</p>
                     </div>
-                    <a href="{{ route('transactions.edit', $transaksi->id) }}" class="btn btn-primary">Edit</a>
+                    {{-- <a href="{{ route('transactions.edit', $transaksi->id) }}" class="btn btn-primary">Edit</a> --}}
 
                     <form action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
                         @csrf

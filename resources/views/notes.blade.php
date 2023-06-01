@@ -4,7 +4,7 @@
 <!-- Search Bar -->
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <form action="/notes">
+        <form action="{{ route('notes.index') }}">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search notes" name="search" value="{{ request('search')}}">
                 <button class="btn btn-danger" type="submit">Search</button>

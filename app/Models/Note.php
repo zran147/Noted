@@ -24,12 +24,18 @@ class Note extends Model
         ];
     }
 
-    public function scopeFilter($query, array $filters) {
-        $query->when($filters['search'] ?? false, function($query, $search) {
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('judul_note', 'like', '%' . $search . '%')
-                    ->orWhere('isi_note', 'like', '%' . $search . '%');
+                ->orWhere('isi_note', 'like', '%' . $search . '%')
+                ->orWhereHas('kategorinotes', function ($query) use ($search) {
+                    $query->where('nama', 'like', '%' . $search . '%');
+                });
         });
     }
+    
+
     public function kategorinotes()
     {
         return $this->belongsTo(Kategorinotes::class, 'kategori_note');

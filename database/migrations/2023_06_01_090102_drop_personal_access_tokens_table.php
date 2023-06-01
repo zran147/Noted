@@ -4,25 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenamePemasukanTableToTransaksi extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        Schema::rename('pemasukan', 'transaksi');
+        Schema::dropIfExists('personal_access_tokens');
     }
+    
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
-    {
-        Schema::rename('transaksi', 'pemasukan');
-    }
+{
+    Schema::create('personal_access_tokens', function (Blueprint $table) {
+        // Define the table structure here
+        // ...
+    });
 }
+};

@@ -80,20 +80,20 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => 13
         // ]);
 
-        // Kategorinotes::create([
-        //     'nama' => 'Academics',
-        //     'slug' => 'academics',   
-        // ]);
+        Kategorinotes::create([
+            'nama' => 'Akademik',
+            'slug' => 'akademik',   
+        ]);
 
-        // Kategorinotes::create([
-        //     'nama' => 'Himalkom',
-        //     'slug' => 'himalkom',   
-        // ]);
+        Kategorinotes::create([
+            'nama' => 'Pribadi',
+            'slug' => 'pribadi',   
+        ]);
 
-        // Kategorinotes::create([
-        //     'nama' => 'Gemastik',
-        //     'slug' => 'Gemastik',   
-        // ]);
+        Kategorinotes::create([
+            'nama' => 'Organisasi',
+            'slug' => 'organisasi',   
+        ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -122,13 +122,53 @@ class DatabaseSeeder extends Seeder
         //     'pemasukan_nominal' => 50000,
         // ]);
 
-        Transaksi::create([
-            'userstransaksi_id' => 13,
-            'judul_transaksi' => 'Hasil Danus',
-            'kategoritransaksi_id' => 1,
-            'jenis_transaksi' => 'pemasukan',
-            'nominal_transaksi' => 100000,
-        ]);
+
+        //STEP 1
+        // Kategoritransaksi::create([
+        //     'nama' => 'Orang tua',
+        //     'slug' => 'orang-tua',   
+        // ]);
+
+        // Kategoritransaksi::create([
+        //     'nama' => 'Beasiswa',
+        //     'slug' => 'beasiswa',   
+        // ]);
+
+        // Kategoritransaksi::create([
+        //     'nama' => 'Bisnis',
+        //     'slug' => 'bisnis',   
+        // ]);
+
+        // Kategoritransaksi::create([
+        //     'nama' => 'Makan dan Minum',
+        //     'slug' => 'makan-dan-minum',   
+        // ]);
+
+        // Kategoritransaksi::create([
+        //     'nama' => 'Akomodasi',
+        //     'slug' => 'akomodasi',   
+        // ]);
+
+        // Kategoritransaksi::create([
+        //     'nama' => 'Pribadi',
+        //     'slug' => 'pribadi',   
+        // ]);
+
+        // Kategoritransaksi::create([
+        //     'nama' => 'Kuliah',
+        //     'slug' => 'kuliah',   
+        // ]);
+
+
+
+
+        // Transaksi::create([
+        //     'userstransaksi_id' => 13,
+        //     'judul_transaksi' => 'Hasil Danus',
+        //     'kategoritransaksi_id' => 1,
+        //     'jenis_transaksi' => 'pemasukan',
+        //     'nominal_transaksi' => 100000,
+        // ]);
     }
 }
 

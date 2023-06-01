@@ -16,16 +16,21 @@ class NoteController extends Controller
         ]);
     }
 
-    public function index() {
+    public function index()
+    {
         $user = auth()->user();
-        $notes = $user->notes;
-
+        $notes = Note::query()
+            ->where('user_id', $user->id)
+            ->orderByDesc('updated_at')
+            ->get();
+    
         return view('notes', [
             "title" => "Notes",
             "active" => 'notes',
             "notes" => $notes
-    ]);
-}
+        ]);
+    }
+    
 
     public function academics() {
         $user = auth()->user();

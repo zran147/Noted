@@ -23,12 +23,10 @@ use App\Models\Note;
 |
 */
 
-// Route::get('/home', function () {
-//     return view('home', [
-//         "title" => "Dashboard",
-//         "active" => 'home'
-//     ]);
-// });
+Route::get('/', function () {
+    return view('login.index');
+});
+
 
 Route::get('/home', [UserController::class, 'showHomePage'])->name('home');
 
@@ -62,6 +60,7 @@ Route::get('/transactions', [TransaksiController::class, 'index'])->name('transa
 Route::get('/transactions/create', [TransaksiController::class, 'create'])->name('transaksi.create');
 Route::get('/transactions/{transaksi}/edit', [TransaksiController::class, 'edit'])->name('transactions.edit');
 Route::post('/transactions', [TransaksiController::class, 'store'])->name('transaksi.store');
+Route::put('/transactions/{transaksi}', [TransaksiController::class, 'update'])->name('transaksi.update');
 Route::get('/transactions/{transaksi}', [TransaksiController::class, 'show']);
 Route::delete('/transactions/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 

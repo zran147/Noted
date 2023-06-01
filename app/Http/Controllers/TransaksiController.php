@@ -47,7 +47,7 @@ class TransaksiController extends Controller
     {
         $validatedData = $request->validate([
             'judul_transaksi' => 'required|max:255',
-            'kategoritransaksi' => 'required',
+            'kategoritransaksi_id' => 'required',
             'jenis_transaksi' => 'required|in:pemasukan,pengeluaran',
             'nominal_transaksi' => 'required'
         ], [
@@ -56,8 +56,9 @@ class TransaksiController extends Controller
     
         // dd($validatedData);
 
-
-    $validatedData['userstransaksi_id'] = auth()->user()->id;
+        $kategori = Kategoritransaksi::findOrFail($request->kategoritransaksi_id);
+        $validatedData['kategoritransaksi_id'] = $kategori->id;
+        $validatedData['userstransaksi_id'] = auth()->user()->id;
 
 
 
@@ -92,20 +93,27 @@ class TransaksiController extends Controller
      */
     public function show(transaksi $transaksi)
     {
-        return view('/transactions', [
+        $kategoritransaksi = Kategoritransaksi::findOrFail($transaksi->kategoritransaksi_id);
+
+        return view('transaksi.show', [
             "title" => "Single transaksi",
-            "transaksi" => $transaksi
+            "transaksi" => $transaksi,
+            "kategoritransaksi" => $kategoritransaksi
+
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(transaksi $transaksi)
+    public function edit($id)
     {
-        $kategoritransaksi = Kategoritransaksi::all();
-        return view('transaksi.edit', compact('transaksi', 'kategoritransaksi'));
+        $transaksi = Transaksi::findOrFail($id);
+        $kategoritransaksis = Kategoritransaksi::all();
+    
+        return view('transaksi.edit', compact('transaksi', 'kategoritransaksis'));
     }
+    
 
 
     /**

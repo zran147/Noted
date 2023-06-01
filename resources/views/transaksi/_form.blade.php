@@ -9,7 +9,7 @@
 
 <div class="mb-3">
   <label for="kategoritransaksi" class="form-label">Category</label>
-  <select class="form-select" name="kategoritransaksi">
+  <select class="form-select @error('kategoritransaksi_id') is-invalid @enderror" name="kategoritransaksi_id" id="kategoritransaksi_id">
     @foreach ($kategoritransaksis as $kategori)
       @if (old('kategoritransaksi') == $kategori->id)
         <option value="{{ $kategori->id }}" selected>{{ $kategori->nama }}</option>

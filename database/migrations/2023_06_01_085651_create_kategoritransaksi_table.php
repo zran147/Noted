@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddJenisTransaksiColumnToTransaksiTable extends Migration
+class CreateKategoritransaksiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddJenisTransaksiColumnToTransaksiTable extends Migration
      */
     public function up()
     {
-        Schema::table('transaksi', function (Blueprint $table) {
-            $table->enum('jenis_transaksi', ['pemasukan', 'pengeluaran'])->after('nominal_transaksi');
+        Schema::create('kategoritransaksi', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama')->unique();
+            $table->string('slug')->unique();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddJenisTransaksiColumnToTransaksiTable extends Migration
      */
     public function down()
     {
-        Schema::table('transaksi', function (Blueprint $table) {
-            $table->dropColumn('jenis_transaksi');
-        });
+        Schema::dropIfExists('kategoritransaksi');
     }
 }

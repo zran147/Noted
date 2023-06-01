@@ -14,7 +14,7 @@
               @if (old('kategori_note') == $kategori->id)
                   <option value="{{ $kategori->nama }}" selected>{{ $kategori->nama }}</option>
               @else
-                  <option value="{{ $kategori->nama }}">{{ $kategori->nama }}</option>
+                  <option clevalue="{{ $kategori->nama }}">{{ $kategori->nama }}</option>
               @endif
           @endforeach
       </select>
