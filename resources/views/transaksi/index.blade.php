@@ -28,29 +28,26 @@
             <a href="{{ route('transaksi.create') }}" class="btn btn-primary">New transaksi</a>
 
             @foreach ($transaksis as $transaksi)
-                <div href="/transactions/{{ $transaksi->slug }}" class="card" style="width: 18rem;">
-                    <h2>
-                        <a 
-                        {{-- href="/transactions/{{ $transaksi->slug }}"  --}}
-                            class="text-decoration-none">{{ $transaksi->judul_transaksi }}</a>
-                    </h2>
-                    <h2>
-                        <a class="text-decoration-none {{ $transaksi->jenis_transaksi === 'pemasukan' ? 'text-success' : 'text-danger' }}">
-                            {{ number_format($transaksi->nominal_transaksi, 2, ',', '.') }}
-                        </a>
-                    </h2>
-                    <h4>
-                        @if ($transaksi->kategoritransaksi)
-                            <a href="/categories/{{ $transaksi->kategoritransaksi }}" class="text-decoration-none">{{ $transaksi->kategoritransaksi }}</a>
-                        @else
-                            No Category Assigned
-                        @endif
-                    </h4>
-                    <div>
-                        <p>{{ $transaksi->updated_at->format('j F') }}</p>
-                    </div>
-                    {{-- <a href="{{ route('transactions.edit', $transaksi->id) }}" class="btn btn-primary">Edit</a> --}}
-
+            <div href="/transactions/{{ $transaksi->slug }}" class="card" style="width: 18rem;">
+                <h2>
+                    <a class="text-decoration-none">{{ $transaksi->judul_transaksi }}</a>
+                </h2>
+                <h2>
+                    <a class="text-decoration-none {{ $transaksi->jenis_transaksi === 'pemasukan' ? 'text-success' : 'text-danger' }}">
+                        {{ number_format($transaksi->nominal_transaksi, 2, ',', '.') }}
+                    </a>
+                </h2>
+                <h4>
+                    @if ($transaksi->kategoritransaksi)
+                        <span class="text-decoration-none">{{ $transaksi->kategoritransaksi->nama }}</span>
+                    @else
+                        No Category Assigned
+                    @endif
+                </h4>
+                
+                <div>
+                    <p>{{ $transaksi->updated_at->format('j F') }}</p>
+                </div>
                     <form action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
                         @csrf
                         @method('DELETE')

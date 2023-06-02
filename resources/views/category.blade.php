@@ -14,7 +14,7 @@
         <article class="mb-5">
             <h4>
                 @if ($note->kategori_note)
-                    <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori_note }}</a>
+                    <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori->nama }}</a>
                 @else
                     No Category Assigned
                 @endif

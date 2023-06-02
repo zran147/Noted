@@ -21,6 +21,7 @@ class NoteController extends Controller
         $user = auth()->user();
         $notes = Note::query()
             ->where('user_id', $user->id)
+            ->with('kategori') 
             ->orderByDesc('updated_at')
             ->get();
     
@@ -30,6 +31,7 @@ class NoteController extends Controller
             "notes" => $notes
         ]);
     }
+    
     
 
     public function academics() {

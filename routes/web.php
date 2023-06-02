@@ -91,10 +91,17 @@ Route::get('/test-database-connection', function () {
 Route::get('home/notes/checkSlug', [HomeNotesController::class, 'checkSlug'])->middleware('auth');
 
 
+
 // Route Resources
 Route::resource('home/notes', HomeNotesController::class)->middleware('auth');
-Route::delete('/notes/{id}', [HomeNotesController::class, 'destroy'])->name('notes.destroy');
+Route::delete('/home/notes/{note}', [HomeNotesController::class, 'destroy'])->name('notes.destroy');
+Route::put('/home/notes/{note}', [HomeNotesController::class, 'update'])->name('notes.update');
+// Route::post('/home/notes/{note}', [HomeNotesController::class, 'update'])->name('notes.update');
 Route::get('/categories/academics', [NoteController::class, 'academics'])->name('academics');
+
+
+
+
 
 //Dynamic Routes
 Route::get('/categories/{category}', 'NoteController@notesByCategory');
