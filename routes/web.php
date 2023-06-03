@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeNotesController;
+use App\Http\Controllers\MoneyboxController;
 use App\Http\Controllers\transaksiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoteController;
@@ -64,19 +65,16 @@ Route::put('/transactions/{transaksi}', [TransaksiController::class, 'update'])-
 Route::get('/transactions/{transaksi}', [TransaksiController::class, 'show']);
 Route::delete('/transactions/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
+// Route Moneybox and single moneybox:
+Route::get('/moneybox', [MoneyboxController::class, 'index'])->name('moneybox');
+Route::get('/moneybox/create', [MoneyboxController::class, 'create'])->name('moneybox.create');
+Route::get('/moneybox/{moneybox}/edit', [MoneyboxController::class, 'edit'])->name('moneybox.edit');
+Route::post('/moneybox', [MoneyboxController::class, 'store'])->name('moneybox.store');
+Route::put('/moneybox/{moneybox}/addmoney', 'MoneyboxController@addMoney')->name('moneybox.addmoney');
+Route::put('/moneybox/{moneybox}', [MoneyboxController::class, 'update'])->name('moneybox.update');
+Route::get('/moneybox/{moneybox}', [MoneyboxController::class, 'show']);
+Route::delete('/moneybox/{id}', [MoneyboxController::class, 'destroy'])->name('moneybox.destroy');
 
-
-Route::get('/moneybox', function () {
-    return view('moneybox', [
-        "title" => "MoneyBox"
-    ]);
-});
-
-// Route::get('/transactions', function () {
-//     return view('transactions', [
-//         "title" => "Transactions",
-//     ]);
-// });
 
 Route::get('/test-database-connection', function () {
     try {
@@ -96,12 +94,7 @@ Route::get('home/notes/checkSlug', [HomeNotesController::class, 'checkSlug'])->m
 Route::resource('home/notes', HomeNotesController::class)->middleware('auth');
 Route::delete('/home/notes/{note}', [HomeNotesController::class, 'destroy'])->name('notes.destroy');
 Route::put('/home/notes/{note}', [HomeNotesController::class, 'update'])->name('notes.update');
-// Route::post('/home/notes/{note}', [HomeNotesController::class, 'update'])->name('notes.update');
 Route::get('/categories/academics', [NoteController::class, 'academics'])->name('academics');
-
-
-
-
 
 //Dynamic Routes
 Route::get('/categories/{category}', 'NoteController@notesByCategory');
