@@ -21,6 +21,8 @@
                 <a class="nav-link {{ ($title === "Notes") ? 'active' : ''  }}" href="/notes">Notes</a>
             </li>
         </ul>
+    </div>
+    <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             @auth
             <li class="nav-item ml-auto">
