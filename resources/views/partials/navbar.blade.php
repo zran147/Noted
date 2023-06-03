@@ -25,13 +25,13 @@
             </li>
         </ul>
     </div>
-    <div style="display: flex">
+    <div class="d-flex align-items-center justify-content-center">
         @auth
-        <span class="me-4">
+        <span class="white poppins me-4">
             Hello, {{ auth()->user()->namalengkap }}
         </span>
-        <span class="me-4">
-            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <span>
+            <a class="white poppins d-flex align-items-center nav-link px-4" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bi bi-box-arrow-right"></i> Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -39,7 +39,7 @@
             </form>
         </span>
         @else
-        <a href="/login" class="nav-link {{ ($title === "login") ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i>Login</a>
+        <a href="/login" class="white poppins nav-link {{ ($title === 'login') ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i> Login</a>
         @endauth
     </div>
 </nav>
