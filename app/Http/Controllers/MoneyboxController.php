@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 
 
+
 class MoneyboxController extends Controller
 {
     /**
@@ -114,11 +115,33 @@ class MoneyboxController extends Controller
     {
         $moneybox = Moneybox::findOrFail($id);
         $additionalAmount = $request->input('additionalAmount');
-
+    
         $moneybox->nominal_moneybox += $additionalAmount;
         $moneybox->save();
-
+    
         return redirect('/moneybox')->with('success', 'Money added successfully!');
     }
 
+    public function showAddMoneyForm($id)
+{
+    $moneybox = Moneybox::findOrFail($id);
+
+    return view('moneybox.add_money', [
+        'moneybox' => $moneybox,
+    ]);
+}
+
+public function saveMoney(Request $request, $id)
+{
+    $moneybox = Moneybox::findOrFail($id);
+    $additionalAmount = $request->input('additionalAmount');
+
+    $moneybox->nominal_moneybox += $additionalAmount;
+    $moneybox->save();
+
+    return redirect('/moneybox')->with('success', 'Money added successfully!');
+}
+
+
+    
 }

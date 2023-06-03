@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.main')
 
 @section('before')
@@ -37,16 +41,19 @@
                 <a class="text-decoration-none"> {{ number_format($moneybox->target_moneybox, 2, ',', '.')  }}</a>
             </h2>
             <h2>
-                <a class="text-decoration-none"> {{ number_format($moneybox->nominal_moneybox, 2, ',', '.') }}  </a>
+                <a class="text-decoration-none"> {{ number_format($moneybox->nominal_moneybox, 2, ',', '.') }} </a>
             </h2>
             <div>
                 <p>{{ $moneybox->updated_at->format('j F') }}</p>
             </div>
-
+            @php
+            $remainingDays = \Carbon\Carbon::parse($moneybox->tanggal_selesai)->diffInDays(\Carbon\Carbon::now());
+            @endphp
+            <p>{{ $remainingDays }} days left</p>
             <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="{{ $moneybox->nominal_moneybox }}" aria-valuemin="0" aria-valuemax="{{ $moneybox->target_moneybox }}">
                 <div class="progress-bar" style="width: {{ ($moneybox->nominal_moneybox / $moneybox->target_moneybox) * 100 }}%"></div>
             </div>
-            {{-- <button a href="{{ route('moneybox.addMoney', $moneybox->id) }}" class="btn btn-info">Update MoneyBox</button>             --}}
+            <a href="{{ route('moneybox.addmoney', $moneybox->id) }}" class="btn btn-info">Add Money</a>
             <form action="{{ route('moneybox.destroy', $moneybox->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
@@ -57,6 +64,4 @@
     </div>
 </div>
 @endsection
-
-
 

@@ -74,6 +74,8 @@ Route::put('/moneybox/{moneybox}/addmoney', 'MoneyboxController@addMoney')->name
 Route::put('/moneybox/{moneybox}', [MoneyboxController::class, 'update'])->name('moneybox.update');
 Route::get('/moneybox/{moneybox}', [MoneyboxController::class, 'show']);
 Route::delete('/moneybox/{id}', [MoneyboxController::class, 'destroy'])->name('moneybox.destroy');
+Route::get('/moneybox/{moneybox}/addmoney', [MoneyboxController::class, 'showAddMoneyForm'])->name('moneybox.addMoney');
+Route::post('/moneybox/{moneybox}/savemoney', [MoneyboxController::class, 'saveMoney'])->name('moneybox.saveMoney');
 
 
 Route::get('/test-database-connection', function () {
