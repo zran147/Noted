@@ -21,12 +21,14 @@
 
 <input type="text" class="white-bar mb-3 form-control @error('judul_transaksi') is-invalid @enderror" id="judul_transaksi" name="judul_transaksi" style="height: 10vh" placeholder="Deskripsi" required value="{{ old('judul_transaksi') }}">
 
-<div class="mb-3">
+<div class="mb-4">
   <input type="hidden" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required>
 </div>
 
 @error('jenis_transaksi')
-    <div class="alert alert-danger">{{ $message }}</div>
+  <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
-<button type="submit" class="btn btn-primary">{{ isset($transaksi) ? 'Update' : 'Save' }}</button>
+<div class="d-flex justify-content-center">
+  <button type="submit" class="btn btn-primary" style="width: 160px">{{ isset($transaksi) ? 'Update' : 'Save' }}</button>
+</div>

@@ -1,21 +1,22 @@
 @extends('layouts.main')
 @include('partials.navbar')
 
-<div class="container-fluid px-0">
-  <h6>
-    <a href="/moneybox">Back to MoneyBox</a>
-  </h6>
-  <div class="row g-0">
-    <!-- First column -->
-    <div class="col-lg-6 vh-100">
-      <form method="post" action="{{ url('/moneybox') }}">
-      {{-- <form method="post" action="{{ route('moneybox.store')}}"> --}}
-        @csrf
-        @include('moneybox._form')
-      </form>
+@section('container')
+  <div class="row mt-5">
+    <div class="col-6">
+      <!-- Add your chart/graph component here -->
+    </div>
+    
+    <div class="col-6">
+      <div class="card poppins text-capitalize">
+        <form method="post" action="{{ url('/moneybox') }}">
+          @csrf
+          @include('moneybox._form')
+        </form>
+      </div>
     </div>
   </div>
-</div>
+@endsection
 
 <script>
 const judulMoneybox = document.querySelector('#judul_moneybox');

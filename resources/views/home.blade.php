@@ -2,9 +2,6 @@
 
 @section('before')
     @include('partials.navbar', ['title' => 'Home'])
-@endsection
-
-@section('container')
     @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -16,7 +13,9 @@
             {{ session('loginError') }}
         </div>
     @endif
+@endsection
 
+@section('container')
     <div class="row mt-5">
 
         <!-- First column -->

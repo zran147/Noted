@@ -4,15 +4,15 @@
 @section('container')
   <div class="row mt-5">
     <div class="col-6">
-        <!-- Add your chart/graph component here -->
+      <!-- Add your chart/graph component here -->
     </div>
 
     <div class="col-6">
-        <div class="card poppins text-capitalize">
-          <form method="post" action="{{ route('transaksi.store') }}">
-            @csrf
-            @include('transaksi._form')
-          </form>
+      <div class="card poppins text-capitalize">
+        <form method="post" action="{{ route('transaksi.store') }}">
+          @csrf
+          @include('transaksi._form')
+        </form>
       </div>
     </div>
   </div>
