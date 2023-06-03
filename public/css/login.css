@@ -20,6 +20,8 @@ button:focus {
 }
 
 .form-control-md, .form-control-sm {
+    height: 38px!important;
+    padding: 0 12px!important;
     color: #454545!important;
     border-radius: 5px!important;
     border-color: #FFA559!important;

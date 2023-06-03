@@ -64,4 +64,9 @@ class User extends Authenticatable
     $this->saldo = $totalPemasukan - $totalPengeluaran;
     $this->save();
 }
+
+public function moneybox(): HasMany
+{
+    return $this->hasMany(Moneybox::class, 'usersmoneybox_id');
+}
 }

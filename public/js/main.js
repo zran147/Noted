@@ -1,23 +1,20 @@
-const select = (el,all=false)=>{
-    el = el.trim()
-    if (all) {
-        return [...document.querySelectorAll(el)]
-    } else {
-        return document.querySelector(el)
+const hamburger = document.querySelectorAll(".hamburger");
+const sidebar = document.querySelector(".sidebar");
+const whiteBar = document.querySelectorAll(".white-bar");
+
+hamburger.forEach((e) => {
+    e.addEventListener("click", () => {
+        sidebar.classList.toggle("sidebar-active");
+    })
+})
+
+whiteBar.forEach((e) => {
+    if (e.querySelector(".btn-danger")) {
+        e.addEventListener("mouseover", () => {
+            e.children[0][2].classList.toggle("hidden");
+        })
+        e.addEventListener("mouseout", () => {
+            e.children[0][2].classList.toggle("hidden");
+        })
     }
-}
-const on = (type,el,listener,all=false)=>{
-    let selectEl = select(el, all)
-    if (selectEl) {
-        if (all) {
-            selectEl.forEach(e=>e.addEventListener(type, listener))
-        } else {
-            selectEl.addEventListener(type, listener)
-        }
-    }
-}
-on('click', '.hamburger', function(e) {
-    select('.hamburger').classList.toggle('active')
-    this.classList.toggle('fa-bars')
-    this.classList.toggle('fa-xmark')
 })

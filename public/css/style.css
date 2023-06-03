@@ -124,12 +124,73 @@ nav .container {
   color: black;
 }
 
+.white-bar form {
+  display: flex;
+}
+
+.white-bar .btn-danger {
+  color: #FFF!important;
+  position: relative;
+  height: 25px;
+  width: 25px;
+  top: -25px;
+  left: 101%;
+  padding: 0;
+  margin-bottom: -30px;
+}
+
+.white-bar .hidden {
+  display: none!important;
+}
+
 .hamburger {
   display: flex;
   color: #FFF;
   font-size: 25px;
   margin-left: 1rem;
-  background-color: #FFA559;
+  background-color: inherit;
   border: none;
   cursor: pointer;
+}
+
+.navbar-nav {
+  width: 200px;
+}
+
+.sidebar {
+  display: flex!important;
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  left: -500px;
+  background-color: #454545;
+  z-index: 100;
+  border-right:#404040 solid;
+  border-width: 1px;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar-active {
+  left: 0px;
+  display: none;
+}
+
+.sidebar li {
+  height: 54px;
+}
+
+.nav-item h1 {
+  margin: 0;
+  font-family: Inder;
+  font-size: 32px;
+  color: #FFF;
+}
+
+.nav-link {
+  font-family: Poppins;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  padding: 0 0 0 25px!important;
+  margin: 15px 0;
+  color: #FFF!important;
 }

@@ -21,7 +21,6 @@
 
         <!-- First column -->
         <div class="col-md-6">
-            yes
         </div>
         <!-- /First column -->
 

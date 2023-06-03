@@ -59,35 +59,45 @@ class HomeNotesController extends Controller
      */
     public function show(Note $note)
     {
-        //
+
     }
+    
 
     /**
      * Show the form for editing the specified resource.
-     */public function edit(Note $note)
-{
-    $kategori_notes = Kategorinotes::all(); 
-    return view('home.notes.edit', compact('note', 'kategori_notes'));
-}
-
+     */
     
-
+     public function edit(Note $note)
+     {
+         $note->load('kategori'); // Eager load the 'kategori' relationship
+         $kategori_notes = Kategorinotes::all();
+     
+         return view('home.notes.edit', compact('note', 'kategori_notes'));
+     }
+     
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Note $note)
-    {
-        $validatedData = $request->validate([
-            'judul_note' => 'required|max:255',
-            'kategori_note' => 'nullable',
-            'isi_note' => 'required',
-        ]);
+
+public function update(Request $request, Note $note)
+{
+    $request->validate([
+        'judul_note' => 'required',
+        'kategori_note' => 'required',
+        'isi_note' => 'required',
+    ]);
+
+    $note->update([
+        'judul_note' => $request->judul_note,
+        'slug' => $request->slug,
+        'kategorinotes_id' => $request->kategori_note,
+        'isi_note' => $request->isi_note,
+    ]);
     
-        $note->update($validatedData);
-    
-        return redirect('/notes')->with('success', 'Note has been updated successfully!');
-    }
-    
+    return redirect('/notes')->with('success', 'Note updated successfully.');
+}
+
+     
 
     /**
      * Remove the specified resource from storage.

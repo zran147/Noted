@@ -15,10 +15,11 @@ class Transaksi extends Model
 
     protected $table = 'transaksi';
 
-    public function kategoritransaksis()
+    public function kategoritransaksi()
     {
         return $this->belongsTo(Kategoritransaksi::class, 'kategoritransaksi_id');
     }
+    
 
     public function userstransaksi()
     {

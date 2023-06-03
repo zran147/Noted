@@ -36,13 +36,11 @@ class Note extends Model
     }
     
 
-    public function kategorinotes()
+    public function kategori()
     {
-        return $this->belongsTo(Kategorinotes::class, 'kategori_note');
+        return $this->belongsTo(Kategorinotes::class, 'kategorinotes_id');
     }
     
-
-        
 
     public function user()
         {

@@ -45,10 +45,14 @@
                     </h2>
                     <h4>
                         @if ($note->kategori_note)
-                        <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori_note }}</a>
-                        @else
+                        @if ($note->kategori)
+                        <a href="/categories/{{ $note->kategori->nama }}" class="text-decoration-none">{{ $note->kategori->nama }}</a>
+                    @else
                         No Category Assigned
-                        @endif
+                    @endif
+                                        @else
+                        No Category Assigned
+                    @endif
                     </h4>
                     <div>
                         <p>{{ $note->updated_at->format('j F') }}</p>
