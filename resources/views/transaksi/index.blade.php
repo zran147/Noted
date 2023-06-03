@@ -21,7 +21,46 @@
 
 <div class="row g-0">
     <div class="col-lg-6 vh-100">
-        <!-- Add your chart/graph component here -->
+        <script type="text/javascript">
+            google.charts.load("current", {
+                packages: ["corechart"]
+            });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Amount']
+                    , ['Pemasukan', {
+                        {
+                            $pemasukan
+                        }
+                    }]
+                    , ['Pengeluaran', {
+                        {
+                            $pengeluaran
+                        }
+                    }]
+                ]);
+
+                var options = {
+                    title: 'Pemasukan vs Pengeluaran'
+                    , pieHole: 0.4
+                , };
+
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+            }
+
+            var options = {
+                title: 'Pemasukan vs Pengeluaran'
+                , pieHole: 0.4
+            , };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+            }
+
+        </script>
     </div>
 
     <div class="col-lg-6 vh-100 order-lg-last">

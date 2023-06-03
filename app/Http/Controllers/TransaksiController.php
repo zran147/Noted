@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Kategoritransaksi;
@@ -151,4 +152,21 @@ class TransaksiController extends Controller
 
     return redirect('/transactions')->with('success', 'Transaction deleted successfully.');
 }
+
+
+public function createGraph()
+{
+    $currentMonth = Carbon::now()->format('Y-m');
+
+    $pemasukan = Transaksi::where('jenis_transaksi', 'pemasukan')
+        ->where('tanggal_transaksi', 'like', $currentMonth.'%')
+        ->sum('nominal_transaksi');
+
+    $pengeluaran = Transaksi::where('jenis_transaksi', 'pengeluaran')
+        ->where('tanggal_transaksi', 'like', $currentMonth.'%')
+        ->sum('nominal_transaksi');
+
+    return view('transaksi.index', compact('pemasukan', 'pengeluaran'));
+}
+
 }
