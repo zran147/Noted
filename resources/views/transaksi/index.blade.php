@@ -17,47 +17,42 @@
         </div>
     @endif
 
-    <h1>Transactions</h1>
-
-    <div class="row g-0">
-        <div class="col-lg-6 vh-100">
+    <div class="row mt-5">
+        <div class="col-6">
             <!-- Add your chart/graph component here -->
         </div>
 
-        <div class="col-lg-6 vh-100 order-lg-last">
-            <a href="{{ route('transaksi.create') }}" class="btn btn-primary">New transaksi</a>
+        <div class="col-6">
+            <div class="card poppins text-capitalize">
+                @foreach ($transaksis as $transaksi)
+                    <div class="white-bar">
+                        <div class="row mb-2">
+                            <div class="col-6">{{ $transaksi->judul_transaksi }}</div>
+                            <div class="col-6 text-end {{ $transaksi->jenis_transaksi === 'pemasukan' ? 'text-success' : 'text-danger' }}">
+                                {{ number_format($transaksi->nominal_transaksi, 2, ',', '.') }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                @if ($transaksi->kategoritransaksi)
+                                    <a href="/categories/{{ $transaksi->kategoritransaksi }}" class="text-decoration-none">{{ $transaksi->kategoritransaksi }}</a>
+                                @else
+                                    No Category Assigned
+                                @endif
+                            </div>
+                            <div class="col-6 text-end">{{ $transaksi->updated_at->format('j F') }}</div>
+                        </div>
+                        {{-- <a href="{{ route('transactions.edit', $transaksi->id) }}" class="btn btn-primary">Edit</a> --}}
 
-            @foreach ($transaksis as $transaksi)
-                <div href="/transactions/{{ $transaksi->slug }}" class="card" style="width: 18rem;">
-                    <h2>
-                        <a 
-                        {{-- href="/transactions/{{ $transaksi->slug }}"  --}}
-                            class="text-decoration-none">{{ $transaksi->judul_transaksi }}</a>
-                    </h2>
-                    <h2>
-                        <a class="text-decoration-none {{ $transaksi->jenis_transaksi === 'pemasukan' ? 'text-success' : 'text-danger' }}">
-                            {{ number_format($transaksi->nominal_transaksi, 2, ',', '.') }}
-                        </a>
-                    </h2>
-                    <h4>
-                        @if ($transaksi->kategoritransaksi)
-                            <a href="/categories/{{ $transaksi->kategoritransaksi }}" class="text-decoration-none">{{ $transaksi->kategoritransaksi }}</a>
-                        @else
-                            No Category Assigned
-                        @endif
-                    </h4>
-                    <div>
-                        <p>{{ $transaksi->updated_at->format('j F') }}</p>
+                        <form action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
-                    {{-- <a href="{{ route('transactions.edit', $transaksi->id) }}" class="btn btn-primary">Edit</a> --}}
-
-                    <form action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-            @endforeach
+                @endforeach
+                <a href="{{ route('transaksi.create') }}" class="btn">Transaksi Baru</a>
+            </div>
         </div>
     </div>
 @endsection

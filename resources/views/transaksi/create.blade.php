@@ -1,20 +1,22 @@
 @extends('layouts.main')
 @include('partials.navbar')
 
-<div class="container-fluid px-0">
-  <h6>
-    <a href="/transactions">Back to transactions</a>
-  </h6>
-  <div class="row g-0">
-    <!-- First column -->
-    <div class="col-lg-6 vh-100">
-      <form method="post" action="{{ route('transaksi.store') }}">
-        @csrf
-        @include('transaksi._form')
-      </form>
+@section('container')
+  <div class="row mt-5">
+    <div class="col-6">
+        <!-- Add your chart/graph component here -->
+    </div>
+
+    <div class="col-6">
+        <div class="card poppins text-capitalize">
+          <form method="post" action="{{ route('transaksi.store') }}">
+            @csrf
+            @include('transaksi._form')
+          </form>
+      </div>
     </div>
   </div>
-</div>
+@endsection
 
 <script>
 const judulTransaksi = document.querySelector('#judul_transaksi');

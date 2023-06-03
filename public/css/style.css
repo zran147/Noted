@@ -8,9 +8,28 @@
   src: url(../fonts/Poppins-Regular.ttf);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: #FFE6C7;
   display: block;
+}
+
+h2 {
+  padding-left: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .inder {
@@ -25,8 +44,12 @@ body {
   color: #454545;
 }
 
+.light-brown {
+  color: #FFA559;
+}
+
 .cream {
-  background: #FFE6C7
+  background: #FFE6C7;
 }
 
 .form-signin .form-floating:focus-within {
@@ -45,18 +68,68 @@ body {
   border-top-right-radius: 0;
 }
 
-
-.trix-content {
-  /* Add your desired styles here */
+nav {
+  background-color: #FFA559;
+  height: 54px;
 }
 
-
-.text-success {
-  color: green;
+nav .container {
+  width: 0;
 }
 
-.text-danger {
-  color: red;
+.card {
+  overflow-y: scroll;
+  max-height: 70vh;
+  padding: 1.5rem;
+  color: #FFF;
+  background-color: #454545;
+  border-radius: 15px;
 }
 
-   
+.card h4 {
+  font-weight: 300;
+}
+
+.card h3 {
+  font-weight: 600;
+}
+
+.card a {
+  color: #454545;
+  font-size: 14px;
+  font-family: Poppins;
+  font-weight: 300;
+  background-color: #FFF;
+  border-radius: 30px;
+}
+
+.card a:hover {
+  background-color: #DDD;
+}
+
+.form-group textarea {
+  height: 28vh;
+  resize: none;
+  border-radius: 15px;
+}
+
+.white-bar {
+  padding: 15px 20px;
+  margin-bottom: 1.5rem;
+  background-color: #FFF;
+  border-radius: 12px;
+}
+
+.white-bar * {
+  color: black;
+}
+
+.hamburger {
+  display: flex;
+  color: #FFF;
+  font-size: 25px;
+  margin-left: 1rem;
+  background-color: #FFA559;
+  border: none;
+  cursor: pointer;
+}
