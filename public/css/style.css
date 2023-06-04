@@ -76,9 +76,17 @@ h2 {
   margin: 0;
 }
 
+.btn:active {
+  box-shadow: none;
+}
+
 .btn-primary {
   background-color: #FFA559;
   border-color: #FFA559;
+}
+
+.btn-info, .btn-info:hover {
+  border-color: #454545;
 }
 
 .alert {
@@ -104,7 +112,7 @@ nav .container {
   background-color: #454545;
   border-color: #454545;
   border-width: 1.5rem;
-  border-radius: 15px;
+  border-radius: 13px;
 }
 
 .card h4 {
@@ -131,14 +139,14 @@ nav .container {
 .form-group textarea {
   height: 28vh;
   resize: none;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .white-bar {
   padding: 15px 20px;
   margin-bottom: 1.5rem;
   background-color: #FFF;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .white-bar * {
@@ -146,7 +154,7 @@ nav .container {
 }
 
 .white-bar form {
-  display: flex;
+  display: grid;
 }
 
 .white-bar .btn-danger {
@@ -156,10 +164,14 @@ nav .container {
   height: 20px;
   width: 35px;
   top: -15px;
-  left: 96.8%;
+  justify-self: flex-end;
   padding: 0;
   margin-bottom: -30px;
-  border-top-right-radius: 11px;
+  margin-right: -20px;
+  border-bottom-left-radius: 9.25px;
+  border-top-right-radius: 9.25px;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .white-bar .hidden {

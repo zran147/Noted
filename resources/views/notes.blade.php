@@ -19,56 +19,54 @@
     {{ session('success') }}
 </div>
 @endif -->
-<h1 class="h2 ml-3 mt-3">Title</h1>
-<div class="row m-1">
-        <!-- bagian kiri -->
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card bg-dark">
-                <div class="card-body">
-                    <div class="form-group mb-0">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                    </div>
+@section('container')
+    <div class="row mt-5">
+        <!-- First column -->
+        <div class="col-6">
+            <div class="card">
+                <div class="form-group mb-0">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                 </div>
             </div>
         </div>
-        <!-- bagian kanan -->
-        <div class="col-sm-6 ms-auto">
-            <div class="card bg-dark">
-                <div class="card-body">
-                    
-                    @foreach($notes as $note)
-                    <div href="/notes/{{ $note->slug }}" class="card" style="width: 18rem;">
-                        <h2>
-                            <a href="/notes/{{ $note->slug }}" class="text-decoration-none">{{ $note->judul_note }}</a>
-                        </h2>
-                        <h4>
+        <!-- /First column -->
+
+        <!-- Second column -->
+        <div class="col-6">
+            <div class="card">
+                @foreach($notes as $note)
+                <div class="white-bar">
+                    <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger hidden fa-solid fa-xmark"></button>
+                    </form>
+                    <div class="row mb-1 mt-2">
+                        <div class="col-6">
+                            <div class="col">{{ $note->judul_note }}</div>
                             @if ($note->kategori_note)
-                            <a href="/categories/{{ $note->kategori_note }}" class="text-decoration-none">{{ $note->kategori_note }}</a>
+                                <div class="col">{{ $note->kategori_note }}</div>
                             @else
-                            No Category Assigned
+                                <div class="col">No Category Assigned</div>
                             @endif
-                        </h4>
-                        <div>
-                            <p>{{ $note->updated_at->format('j F') }}</p>
                         </div>
-                        <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>
-                        
-                        <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                    @endforeach
-                    <div class="card mb-0">
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Details</a>
+                        <div class="col-6 d-flex align-items-center justify-content-end">
+                            {{ $note->updated_at->format('j F') }}
                         </div>
                     </div>
-                    <a href="{{ route('notes.create') }}" class="btn btn-primary mt-3 mb-0">Create Note</a>
+                    <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>
+                </div>
+                @endforeach
+                <!-- <div class="card mb-0">
+                    <div class="card-body">
+                        <h4 class="card-title">Title</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Details</a>
+                    </div>
+                </div> -->
+                <a href="{{ route('notes.create') }}" class="btn btn-primary">Create Note</a>
             </div>
         </div>
+        <!-- /Second column -->
     </div>
-</div>
+@endsection
