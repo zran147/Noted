@@ -25,19 +25,23 @@ class UserController extends Controller
     public function showHomePage()
     {
         $user = Auth::user();
-
+    
         // Make sure user is authenticated
         if (!$user) {
             return redirect('/login'); // Redirect to login if user is not authenticated
         }
-
+    
         // Update the saldo for the user
         $this->updateSaldo($user);
-
+    
         // Retrieve the updated saldo value for the user
         $saldo = $user->saldo;
-
-        // Pass the saldo variable to the view
-        return view('home')->with('saldo', $saldo);
+    
+        // Get the transaksis for the user
+        $transaksis = $user->transaksi;
+    
+        // Pass the transaksis and saldo variables to the view
+        return view('home', compact('transaksis', 'saldo'));
     }
+    
 }

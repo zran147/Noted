@@ -13,6 +13,64 @@
             {{ session('loginError') }}
         </div>
     @endif
+    <!-- Include the Google Chart API library -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var transaksis = {!! $transaksis !!};
+            var pemasukan = 0;
+            var pengeluaran = 0;
+
+            // Calculate pemasukan and pengeluaran
+            transaksis.forEach(function(transaksi) {
+                if (transaksi.jenis_transaksi === 'pemasukan') {
+                    pemasukan += parseFloat(transaksi.nominal_transaksi);
+                } else if (transaksi.jenis_transaksi === 'pengeluaran') {
+                    pengeluaran += parseFloat(transaksi.nominal_transaksi);
+                }
+            });
+
+            var data = google.visualization.arrayToDataTable([
+                ['Jenis Transaksi', 'Amount'],
+                ['Pemasukan', pemasukan],
+                ['Pengeluaran', pengeluaran]
+            ]);
+
+            var options = {
+                // Remove the title
+                title: '',
+
+                // Remove the labels
+                legend: 'none',
+
+                // Customize the colors
+                colors: ['#FFA559', '#454545'],
+
+                // Remove the background color
+                backgroundColor: 'none',
+
+                // Adjust chart area padding
+                chartArea: {
+                    left: 20,
+                    top: 20,
+                    width: '100%',
+                    height: '100%'
+                },
+
+                // Adjust the font size
+                fontSize: 12,
+
+                // Set the pieHole to create a donut chart
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('homeTransactionsChart'));
+            chart.draw(data, options);
+        }
+    </script>
 @endsection
 
 @section('container')
@@ -20,6 +78,8 @@
 
         <!-- First column -->
         <div class="col-md-6">
+            <!-- Render the transactions chart -->
+            <div id="homeTransactionsChart" style="width: 100%; height: 300px;"></div>
         </div>
         <!-- /First column -->
 

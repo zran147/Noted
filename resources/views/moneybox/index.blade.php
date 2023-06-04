@@ -22,7 +22,54 @@
 @section('container')
     <div class="row mt-5">
         <div class="col-lg-6">
-            <!-- Add your chart/graph component here -->
+            @section('scripts')
+            <script type="text/javascript">
+                function loadCharts() {
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawCharts);
+                }
+        
+                function drawCharts() {
+                    @foreach ($moneyboxes as $moneybox)
+                        drawChart({{ $moneybox->id }}, {{ $moneybox->nominal_moneybox }}, {{ $moneybox->target_moneybox }});
+                    @endforeach
+                }
+        
+                function drawChart(moneyboxId, currentAmount, targetAmount) {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Label', 'Value'],
+                        ['Current', currentAmount],
+                        ['Remaining', targetAmount - currentAmount]
+                    ]);
+        
+                    var options = {
+                        pieHole: 0.6,
+                        pieSliceTextStyle: {
+                            color: 'black',
+                        },
+                        slices: {
+                            0: { color: '#FFA559' },
+                            1: { color: '#454545' }
+                        },
+                        legend: 'none',
+                        backgroundColor: 'none',
+                        chartArea: {
+                            left: 20,
+                            top: 20,
+                            width: '100%',
+                            height: '100%'
+                        },
+                        fontSize: 12
+                    };
+        
+                    var chart = new google.visualization.PieChart(document.getElementById('moneyboxChart' + moneyboxId));
+                    chart.draw(data, options);
+                }
+        
+                loadCharts();
+            </script>
+        @endsection
+        
         </div>
 
         <div class="col-lg-6">
