@@ -40,8 +40,19 @@ class UserController extends Controller
         // Get the transaksis for the user
         $transaksis = $user->transaksi;
     
-        // Pass the transaksis and saldo variables to the view
-        return view('home', compact('transaksis', 'saldo'));
+        // Retrieve the kategoriData for the user
+        $kategoriData = Kategoritransaksi::leftJoin('transaksi', 'kategoritransaksi.id', '=', 'transaksi.kategoritransaksi_id')
+            ->select('kategoritransaksi.nama')
+            ->selectRaw('SUM(CASE WHEN transaksi.jenis_transaksi = "pemasukan" THEN transaksi.nominal_transaksi ELSE 0 END) AS pemasukan')
+            ->selectRaw('SUM(CASE WHEN transaksi.jenis_transaksi = "pengeluaran" THEN transaksi.nominal_transaksi ELSE 0 END) AS pengeluaran')
+            ->where('transaksi.userstransaksi_id', $user->id)
+            ->groupBy('kategoritransaksi.id', 'kategoritransaksi.nama') // Include 'kategoritransaksi.nama' in GROUP BY
+            ->get();
+    
+        // Pass the transaksis, saldo, and kategoriData variables to the view
+        return view('home', compact('transaksis', 'saldo', 'kategoriData'));
     }
+    
+    
     
 }

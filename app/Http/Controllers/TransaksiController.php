@@ -9,25 +9,35 @@ use App\Models\Kategoritransaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $user = Auth::user();
     
-        // Fetch transaksis for the authenticated user
-        $transaksis = $user->transaksi()->latest()->get();
-    
-        // dd($transaksis);
-    
-        return view('transaksi.index', [
-            'transaksis' => $transaksis,
-        ]);
-    }
+     public function index()
+     {
+         $user = Auth::user();
+     
+         // Fetch transaksis for the authenticated user
+         $transaksis = $user->transaksi()->latest()->get();
+     
+         // Fetch kategori data for the column chart
+         $kategoriData = Kategoritransaksi::select('kategoritransaksi.nama')
+             ->selectRaw('SUM(CASE WHEN jenis_transaksi = "pemasukan" THEN nominal_transaksi ELSE 0 END) AS pemasukan')
+             ->selectRaw('SUM(CASE WHEN jenis_transaksi = "pengeluaran" THEN nominal_transaksi ELSE 0 END) AS pengeluaran')
+             ->leftJoin('transaksi', 'kategoritransaksi.id', '=', 'transaksi.kategoritransaksi_id')
+             ->where('transaksi.userstransaksi_id', $user->id)
+             ->groupBy('kategoritransaksi.id', 'kategoritransaksi.nama')
+             ->get();
+     
+         return view('transaksi.index', [
+             'transaksis' => $transaksis,
+             'kategoriData' => $kategoriData,
+         ]);
+     }
 
     /**
      * Show the form for creating a new resource.

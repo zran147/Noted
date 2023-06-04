@@ -13,7 +13,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
         <div class="mb-3">
             <label for="kategori_note" class="form-label">Category</label>
             <select class="form-select @error('kategori_note') is-invalid @enderror" name="kategori_note" id="kategori_note">
@@ -25,7 +24,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>        
-
         <div class="mb-3">
             <label for="isi_note" class="form-label">Isi Note</label>
             <input id="isi_note" type="hidden" name="isi_note" value="{{ old('isi_note', $note->isi_note) }}">
@@ -34,4 +32,22 @@
 
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
+@endsection
+
+@section('container')
+    <div class="row mt-5">
+
+        <!-- First column -->
+        <div class="col-md-6">
+            <!-- Render the transactions chart -->
+            <div id="homeTransactionsChart" style="width: 100%; height: 300px;"></div>
+        </div>
+        <!-- /First column -->
+
+        <!-- Second column -->
+       
+        <!-- /Second column -->
+
+    </div>
+
 @endsection

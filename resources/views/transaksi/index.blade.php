@@ -56,7 +56,7 @@
                 // Adjust chart area padding
                 chartArea: {
                     left: 20,
-                    top: 50,
+                    top: 20,
                     width: '100%',
                     height: '100%'
                 },
@@ -66,14 +66,39 @@
 
                 // Set the pieHole to create a donut chart
                 pieHole: 0.4
-
-                
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('transactionsChart'));
-            chart.draw(data, options);
+            var pieChart = new google.visualization.PieChart(document.getElementById('transactionsChart'));
+            pieChart.draw(data, options);
+
+            var columnData = google.visualization.arrayToDataTable([
+                ['Kategori Transaksi', 'Pemasukan', 'Pengeluaran', { role: 'annotation' } ],
+                @foreach ($kategoriData as $kategori)
+                ['{{ $kategori->nama }}', {{ $kategori->pemasukan }}, {{ $kategori->pengeluaran }}, ''],
+                @endforeach
+            ]);
+
+            var columnOptions = {
+                width: '70%',
+                height: 400,
+                legend: { position: 'top', maxLines: 3 },
+                bar: { groupWidth: '75%' },
+                isStacked: true,
+                colors: ['#FFA559', '#454545'],
+            };
+
+            var columnChart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            columnChart.draw(columnData, columnOptions);
         }
     </script>
+
+    <style>
+        /* Remove background color */
+        #transactionsChart,
+        #chart_div {
+            background-color: transparent !important;
+        }
+    </style>
 @endsection
 
 @section('container')
@@ -113,6 +138,13 @@
                 @endforeach
                 <a href="{{ route('transaksi.create') }}" class="btn">Transaksi Baru</a>
             </div>
+        </div>
+    </div>
+
+    <!-- Add a new div for the column chart -->
+    <div class="row mt-5">
+        <div class="col-6">
+            <div id="chart_div" style="width: 100%; height: 300px;"></div>
         </div>
     </div>
 @endsection

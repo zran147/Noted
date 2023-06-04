@@ -114,4 +114,41 @@
 
     </div>
 
+    <!-- Additional column chart -->
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawColumnChart);
+    
+        function drawColumnChart() {
+            var kategoriData = {!! $kategoriData !!};
+    
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Category');
+            data.addColumn('number', 'Pemasukan');
+            data.addColumn('number', 'Pengeluaran');
+    
+            kategoriData.forEach(function(kategori) {
+                data.addRow([kategori.nama, parseFloat(kategori.pemasukan), parseFloat(kategori.pengeluaran)]);
+            });
+    
+            var options = {
+                legend: { position: 'none' },
+                backgroundColor: 'none',
+                chartArea: { left: 60, top: 20, width: '80%', height: '80%' },
+                fontSize: 12,
+                colors: ['#FFA559', '#454545'],
+                isStacked: true, // Set to true for stacked column chart
+            };
+    
+            var chart = new google.visualization.ColumnChart(document.getElementById('homeColumnChart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <!-- Render the column chart -->
+            <div id="homeColumnChart" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
 @endsection
