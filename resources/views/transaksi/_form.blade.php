@@ -15,8 +15,8 @@
 </select>
 
 <div class="input-group mb-3">
-  <span class="input-group-text" style="border-top-left-radius: 12px; border-bottom-left-radius: 12px">Rp</span>
-  <input type="number" class="form-control" name="nominal_transaksi" style="height: 10vh; border-top-right-radius: 12px; border-bottom-right-radius: 12px" placeholder="Nominal" required autofocus>
+  <span class="input-group-text" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px">Rp</span>
+  <input type="number" class="form-control" name="nominal_transaksi" style="height: 10vh; border-top-right-radius: 10px; border-bottom-right-radius: 10px" placeholder="Nominal" required autofocus>
 </div>
 
 <input type="text" class="white-bar mb-3 form-control @error('judul_transaksi') is-invalid @enderror" id="judul_transaksi" name="judul_transaksi" style="height: 10vh" placeholder="Deskripsi" required value="{{ old('judul_transaksi') }}">

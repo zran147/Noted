@@ -3,13 +3,13 @@
 <input type="hidden" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required>
 
 <div class="input-group mb-3">
-  <span class="input-group-text" style="border-top-left-radius: 12px; border-bottom-left-radius: 12px">Rp</span>
-  <input type="number" class="form-control" name="target_moneybox" style="height: 10vh; border-top-right-radius: 12px; border-bottom-right-radius: 12px" placeholder="Target" required value="{{ old('target_moneybox') }}">
+  <span class="input-group-text" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px">Rp</span>
+  <input type="number" class="form-control" name="target_moneybox" style="height: 10vh; border-top-right-radius: 10px; border-bottom-right-radius: 12px" placeholder="Target" required value="{{ old('target_moneybox') }}">
 </div>
   
 <div class="input-group mb-3">
-  <span class="input-group-text" style="border-top-left-radius: 12px; border-bottom-left-radius: 12px">Rp</span>
-  <input type="number" class="form-control" name="nominal_moneybox" style="height: 10vh; border-top-right-radius: 12px; border-bottom-right-radius: 12px" placeholder="Tabungan Awal" required value="{{ old('nominal_moneybox') }}">
+  <span class="input-group-text" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px">Rp</span>
+  <input type="number" class="form-control" name="nominal_moneybox" style="height: 10vh; border-top-right-radius: 10px; border-bottom-right-radius: 12px" placeholder="Tabungan Awal" required value="{{ old('nominal_moneybox') }}">
 </div>
 
 <input type="datetime-local" class="white-bar mb-4 form-control" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" placeholder="Deadline" required>
