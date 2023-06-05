@@ -56,6 +56,10 @@ h2 {
   background: #FFE6C7;
 }
 
+input:focus {
+  box-shadow: none!important;
+}
+
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
@@ -104,15 +108,34 @@ nav .container {
   width: 0;
 }
 
+.container {
+  height: calc(100vh - 6rem - 54px);
+}
+
 .card {
   overflow-y: scroll;
-  max-height: 70vh;
+  height: calc(100vh - 6rem - 54px);
   /* padding: 1.5rem; */
   color: #FFF;
   background-color: #454545;
   border-color: #454545;
   border-width: 1.5rem;
   border-radius: 13px;
+}
+
+@media(max-width: 991px) {
+  .container {
+    height: auto;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    height: auto;
+  }
+}
+
+.card textarea {
+  height: calc(100vh - 6rem - 54px - 48px)!important;
 }
 
 .card h4 {
@@ -243,3 +266,8 @@ nav {
   margin: 15px 0;
   color: #FFF!important;
 }
+
+/* #homeTransactionsChart div {
+  display: flex;
+  align-items: start;
+} */

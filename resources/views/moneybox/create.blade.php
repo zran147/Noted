@@ -8,7 +8,7 @@
     </div>
     
     <div class="col-6">
-      <div class="card poppins text-capitalize">
+      <div class="card poppins text-capitalize" style="height: auto">
         <form method="post" action="{{ url('/moneybox') }}">
           @csrf
           @include('moneybox._form')

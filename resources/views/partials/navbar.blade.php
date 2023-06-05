@@ -39,8 +39,10 @@
             </form>
         </span>
         @else
-        <a href="/login" class="white poppins nav-link {{ ($title === 'login') ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i> Login</a>
-        @endauth
+        <span>
+            <a href="/login" class="white poppins d-flex align-items-center nav-link px-4 {{ ($title === 'login') ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i> Login</a>
+        </span>
+            @endauth
     </div>
 </nav>
 <!-- NAV BAR -->

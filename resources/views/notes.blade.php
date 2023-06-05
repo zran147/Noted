@@ -44,8 +44,8 @@
                     <div class="row mb-1 mt-2">
                         <div class="col-6">
                             <div class="col">{{ $note->judul_note }}</div>
-                            @if ($note->kategori_note)
-                                <div class="col">{{ $note->kategori_note }}</div>
+                            @if ($note->kategori->nama)
+                                <div class="col">{{ $note->kategori->nama }}</div>
                             @else
                                 <div class="col">No Category Assigned</div>
                             @endif

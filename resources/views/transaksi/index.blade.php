@@ -1,7 +1,7 @@
 @extends('layouts.main')
+@include('partials.navbar', ['title' => 'Home'])
 
 @section('before')
-    @include('partials.navbar', ['title' => 'Home'])
     @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -55,8 +55,8 @@
 
                 // Adjust chart area padding
                 chartArea: {
-                    left: 20,
                     top: 20,
+                    bottom: 20,
                     width: '100%',
                     height: '100%'
                 },
@@ -65,47 +65,57 @@
                 fontSize: 12,
 
                 // Set the pieHole to create a donut chart
-                pieHole: 0.4
+                pieHole: 0.4,
             };
 
-            var pieChart = new google.visualization.PieChart(document.getElementById('transactionsChart'));
-            pieChart.draw(data, options);
-
-            var columnData = google.visualization.arrayToDataTable([
-                ['Kategori Transaksi', 'Pemasukan', 'Pengeluaran', { role: 'annotation' } ],
-                @foreach ($kategoriData as $kategori)
-                ['{{ $kategori->nama }}', {{ $kategori->pemasukan }}, {{ $kategori->pengeluaran }}, ''],
-                @endforeach
-            ]);
-
-            var columnOptions = {
-                width: '70%',
-                height: 400,
-                legend: { position: 'top', maxLines: 3 },
-                bar: { groupWidth: '75%' },
-                isStacked: true,
-                colors: ['#FFA559', '#454545'],
-            };
-
-            var columnChart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-            columnChart.draw(columnData, columnOptions);
+            var chart = new google.visualization.PieChart(document.getElementById('transactionsDonutChart'));
+            chart.draw(data, options);
         }
     </script>
 
-    <style>
-        /* Remove background color */
-        #transactionsChart,
-        #chart_div {
-            background-color: transparent !important;
+    <!-- Additional column chart -->
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawColumnChart);
+    
+        function drawColumnChart() {
+            var kategoriData = {!! $kategoriData !!};
+    
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Category');
+            data.addColumn('number', 'Pemasukan');
+            data.addColumn('number', 'Pengeluaran');
+    
+            kategoriData.forEach(function(kategori) {
+                data.addRow([kategori.nama, parseFloat(kategori.pemasukan), parseFloat(kategori.pengeluaran)]);
+            });
+    
+            var options = {
+                legend: { position: 'none' },
+                backgroundColor: 'none',
+                chartArea: {
+                    top: 20,
+                    bottom: 20,
+                    width: '80%',
+                    height: '80%'
+                },
+                fontSize: 12,
+                colors: ['#FFA559', '#454545'],
+                isStacked: true, // Set to true for stacked column chart
+            };
+    
+            var chart = new google.visualization.ColumnChart(document.getElementById('transactionsBarChart'));
+            chart.draw(data, options);
         }
-    </style>
+    </script>
 @endsection
 
 @section('container')
     <div class="row mt-5">
         <div class="col-6">
             <!-- Render the transactions chart -->
-            <div id="transactionsChart" style="width: 100%; height: 300px;"></div>
+            <div id="transactionsDonutChart" class="row"></div>
+            <div id="transactionsBarChart" class="row"></div>
         </div>
 
         <div class="col-6">
@@ -144,7 +154,6 @@
     <!-- Add a new div for the column chart -->
     <div class="row mt-5">
         <div class="col-6">
-            <div id="chart_div" style="width: 100%; height: 300px;"></div>
         </div>
     </div>
 @endsection

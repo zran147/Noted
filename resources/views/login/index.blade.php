@@ -10,7 +10,7 @@
     <div class="col-10 col-sm-8 col-md-8 col-lg-7">
         <main class="form-signin w-100 m-auto text-center">
             <h1 class="display-5 mb-5 fw-normal" id="noted">Noted.</h1>
-            <form class="text-left poppins brown" action="{{ route('login') }}" method="post">
+            <form class="text-start poppins brown" action="{{ route('login') }}" method="post">
               <div class="p-1">Username</div>
               @csrf
               <div class="form-floating mb-2">

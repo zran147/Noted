@@ -1,7 +1,7 @@
 @extends('layouts.main')
+@include('partials.navbar', ['title' => 'Home'])
 
 @section('before')
-    @include('partials.navbar', ['title' => 'Home'])
     @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -13,6 +13,7 @@
             {{ session('loginError') }}
         </div>
     @endif
+
     <!-- Include the Google Chart API library -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -54,8 +55,8 @@
 
                 // Adjust chart area padding
                 chartArea: {
-                    left: 20,
                     top: 20,
+                    bottom: 20,
                     width: '100%',
                     height: '100%'
                 },
@@ -67,52 +68,10 @@
                 pieHole: 0.4,
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('homeTransactionsChart'));
+            var chart = new google.visualization.PieChart(document.getElementById('homeDonutChart'));
             chart.draw(data, options);
         }
     </script>
-@endsection
-
-@section('container')
-    <div class="row mt-5">
-
-        <!-- First column -->
-        <div class="col-md-6">
-            <!-- Render the transactions chart -->
-            <div id="homeTransactionsChart" style="width: 100%; height: 300px;"></div>
-        </div>
-        <!-- /First column -->
-
-        <!-- Second column -->
-        <div class="col-md-6 px-3">
-            {{-- Bagian Finance --}}
-            <h2 class="poppins brown">Finance</h2>
-
-            <div class="card mb-4">
-                <h4>Saldo</h4>
-                <div class="row">
-                    <div class="col-12 col-lg-6 d-flex align-items-center">
-                        <h3 class="text-decoration-none">Rp {{ number_format($saldo, 2, ',', '.') }}</h3>
-                    </div>
-                    <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center">
-                        <a href="/transactions" class="btn">Transactions</a>
-                    </div>
-                    <div class="col-6 col-lg-3 d-flex align-items-center justify-content-center">
-                        <a href="/moneybox" class="btn">MoneyBox</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <h2 class="poppins brown">Notes</h2>
-                <!-- <label for="exampleFormControlTextarea1">Type your notes here</label> -->
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            {{-- Bagian Finance --}}
-        </div>
-        <!-- /Second column -->
-
-    </div>
 
     <!-- Additional column chart -->
     <script type="text/javascript">
@@ -134,21 +93,62 @@
             var options = {
                 legend: { position: 'none' },
                 backgroundColor: 'none',
-                chartArea: { left: 60, top: 20, width: '80%', height: '80%' },
+                chartArea: {
+                    top: 20,
+                    bottom: 20,
+                    width: '80%',
+                    height: '80%'
+                },
                 fontSize: 12,
                 colors: ['#FFA559', '#454545'],
                 isStacked: true, // Set to true for stacked column chart
             };
     
-            var chart = new google.visualization.ColumnChart(document.getElementById('homeColumnChart'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('homeBarChart'));
             chart.draw(data, options);
         }
     </script>
+@endsection
 
+@section('container')
     <div class="row mt-5">
-        <div class="col-md-12">
-            <!-- Render the column chart -->
-            <div id="homeColumnChart" style="width: 100%; height: 300px;"></div>
+
+        <!-- First column -->
+        <div class="col-md-6">
+            <!-- Render the transactions chart -->
+            <div id="homeDonutChart" class="row"></div>
+            <div id="homeBarChart" class="row"></div>
         </div>
+        <!-- /First column -->
+
+        <!-- Second column -->
+        <div class="col-md-6 px-3">
+            {{-- Bagian Finance --}}
+            <h2 class="poppins brown">Finance</h2>
+
+            <div class="card mb-4" style="height: auto; border: none; padding: 1.5rem;">
+                <h4>Saldo</h4>
+                <div class="row">
+                    <div class="col-12 col-lg-6 d-flex align-items-center mb-3 mb-lg-0">
+                        <h3 class="text-decoration-none">Rp {{ number_format($saldo, 2, ',', '.') }}</h3>
+                    </div>
+                    <div class="col-4 col-md-6 col-lg-3 d-flex align-items-center justify-content-lg-center">
+                        <a href="/transactions" class="btn">Transactions</a>
+                    </div>
+                    <div class="col-4 col-md-4 col-lg-3 d-flex align-items-center justify-content-lg-center">
+                        <a href="/moneybox" class="btn">MoneyBox</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h2 class="poppins brown">Notes</h2>
+                <!-- <label for="exampleFormControlTextarea1">Type your notes here</label> -->
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            {{-- Bagian Finance --}}
+        </div>
+        <!-- /Second column -->
+
     </div>
 @endsection

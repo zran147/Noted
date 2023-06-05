@@ -10,10 +10,10 @@
     <div class="col-10 col-sm-8 col-md-8 col-lg-7">
         <main class="form-registration w-100 m-auto text-center">
             <h1 class="display-5 mb-4 fw-normal" id="noted">Noted.</h1>
-            <form class="text-left poppins brown" action="/register" method="post">
+            <form class="text-start poppins brown" action="/register" method="post">
                 @csrf
+                <div class="p-1">Nama Lengkap</div>
                 <div class="form-floating mb-1">
-                    <div class="p-1">Nama Lengkap</div>
                     <input type="text" name="namalengkap" class="form-control form-control-sm rounded-top @error('namalengkap') is-invalid @enderror" id="namalengkap" required value="{{ old('namalengkap') }}">
                     @error('namalengkap')
                     <div class="invalid-feedback">
@@ -21,8 +21,8 @@
                     </div>
                     @enderror
                 </div>
+                <div class="p-1">Username</div>
                 <div class="form-floating mb-1">
-                    <label for="username">Username</label>
                     <input type="username" name="username" class="form-control form-control-sm @error('username') is-invalid @enderror" id="username" required value="{{ old('username') }}">
                     @error('username')
                     <div class="invalid-feedback">
@@ -30,8 +30,8 @@
                     </div>
                     @enderror
                 </div>
+                <div class="p-1">Email</div>
                 <div class="form-floating mb-1">
-                    <label for="email">Email</label>
                     <input type="email" name="email" class="form-control form-control-sm @error('email') is-invalid @enderror" id="email" required value="{{ old('email') }}">
                     @error('email')
                     <div class="invalid-feedback">
@@ -39,8 +39,8 @@
                     </div>
                     @enderror
                 </div>
+                <div class="p-1">Password</div>
                 <div class="form-floating mb-4">
-                    <label for="password">Password</label>
                     <input type="password" name="password" class="form-control form-control-sm @error('password') is-invalid @enderror" id="floatingPassword">
                     @error('password')
                     <div class="invalid-feedback">
