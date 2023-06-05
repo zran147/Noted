@@ -23,29 +23,35 @@
     <div class="row mt-5">
         <!-- First column -->
         <div class="col-6">
-            <div class="card">
-                <div class="form-group mb-0">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            <div class="card poppins">
+            @foreach($notes as $note)
+                <div class="fs-4 ps-2 mb-3 mt-1 hidden">{{ $note->judul_note }}</div>
+                <div class="white-bar list hidden" id="{{ $note->judul_note }}">
+                    <div class="row mb-1 mt-2">
+                        <!-- <div class="col">{{ $note->judul_note }}</div> -->
+                        <div> {!! $note["isi_note"] !!} </div>
+                    </div>
                 </div>
+            @endforeach
             </div>
         </div>
         <!-- /First column -->
 
         <!-- Second column -->
         <div class="col-6">
-            <div class="card">
+            <div class="card poppins text-capitalize">
                 @foreach($notes as $note)
-                <div class="white-bar">
+                <div class="white-bar" id="{{ $note->judul_note }}">
                     <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger hidden fa-solid fa-xmark"></button>
                     </form>
-                    <div class="row mb-1 mt-2">
+                    <div class="row mb-2 mt-2">
                         <div class="col-6">
-                            <div class="col">{{ $note->judul_note }}</div>
+                            <div class="col mb-1">{{ $note->judul_note }}</div>
                             @if ($note->kategori->nama)
-                                <div class="col">{{ $note->kategori->nama }}</div>
+                                <div class="col mb-2">{{ $note->kategori->nama }}</div>
                             @else
                                 <div class="col">No Category Assigned</div>
                             @endif
@@ -54,7 +60,7 @@
                             {{ $note->updated_at->format('j F') }}
                         </div>
                     </div>
-                    <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('notes.edit', $note->id) }}" class="mb-2 btn btn-outline-primary">Edit</a>
                 </div>
                 @endforeach
                 <!-- <div class="card mb-0">
@@ -64,7 +70,7 @@
                         <a href="#" class="btn btn-primary">Details</a>
                     </div>
                 </div> -->
-                <a href="{{ route('notes.create') }}" class="btn btn-primary">Create Note</a>
+                <a href="{{ route('notes.create') }}" class="btn">Create Note</a>
             </div>
         </div>
         <!-- /Second column -->

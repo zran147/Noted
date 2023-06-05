@@ -35,7 +35,7 @@ class HomeNotesController extends Controller
     {
         $validatedData = $request->validate([
             'judul_note' => 'required|max:255',
-            'slug' => 'required|unique:notes',
+            'slug' => 'unique:notes',
             'kategori_note' => 'required',
             'isi_note' => 'required'
         ]);

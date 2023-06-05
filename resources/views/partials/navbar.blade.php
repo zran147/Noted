@@ -32,7 +32,7 @@
         </span>
         <span>
             <a class="white poppins d-flex align-items-center nav-link px-4" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="bi bi-box-arrow-right"></i> Logout
+                Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -40,9 +40,9 @@
         </span>
         @else
         <span>
-            <a href="/login" class="white poppins d-flex align-items-center nav-link px-4 {{ ($title === 'login') ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i> Login</a>
+            <a href="/login" class="white poppins d-flex align-items-center nav-link px-4 {{ ($title === 'login') ? 'active' : '' }}">Login</a>
         </span>
-            @endauth
+        @endauth
     </div>
 </nav>
 <!-- NAV BAR -->
