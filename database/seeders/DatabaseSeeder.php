@@ -19,56 +19,56 @@ class DatabaseSeeder extends Seeder
     {
        
         //Step 1: Bikin Kategorinotes
-        // Kategorinotes::create([
-        //     'nama' => 'Akademik',
-        //     'slug' => 'akademik',   
-        // ]);
+        Kategorinotes::create([
+            'nama' => 'Akademik',
+            'slug' => 'akademik',   
+        ]);
 
-        // Kategorinotes::create([
-        //     'nama' => 'Pribadi',
-        //     'slug' => 'pribadi',   
-        // ]);
+        Kategorinotes::create([
+            'nama' => 'Pribadi',
+            'slug' => 'pribadi',   
+        ]);
 
-        // Kategorinotes::create([
-        //     'nama' => 'Organisasi',
-        //     'slug' => 'organisasi',   
-        // ]);
+        Kategorinotes::create([
+            'nama' => 'Organisasi',
+            'slug' => 'organisasi',   
+        ]);
 
         // //Step 2: Bikin Kategoritransaksi
-        // Kategoritransaksi::create([
-        //     'nama' => 'Orang tua',
-        //     'slug' => 'orang-tua',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Orang tua',
+            'slug' => 'orang-tua',   
+        ]);
 
-        // Kategoritransaksi::create([
-        //     'nama' => 'Beasiswa',
-        //     'slug' => 'beasiswa',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Beasiswa',
+            'slug' => 'beasiswa',   
+        ]);
 
-        // Kategoritransaksi::create([
-        //     'nama' => 'Bisnis',
-        //     'slug' => 'bisnis',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Bisnis',
+            'slug' => 'bisnis',   
+        ]);
 
-        // Kategoritransaksi::create([
-        //     'nama' => 'Makan dan Minum',
-        //     'slug' => 'makan-dan-minum',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Makan dan Minum',
+            'slug' => 'makan-dan-minum',   
+        ]);
 
-        // Kategoritransaksi::create([
-        //     'nama' => 'Akomodasi',
-        //     'slug' => 'akomodasi',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Akomodasi',
+            'slug' => 'akomodasi',   
+        ]);
 
-        // Kategoritransaksi::create([
-        //     'nama' => 'Pribadi',
-        //     'slug' => 'pribadi',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Pribadi',
+            'slug' => 'pribadi',   
+        ]);
 
-        // Kategoritransaksi::create([
-        //     'nama' => 'Kuliah',
-        //     'slug' => 'kuliah',   
-        // ]);
+        Kategoritransaksi::create([
+            'nama' => 'Kuliah',
+            'slug' => 'kuliah',   
+        ]);
 
         Moneybox::create([
             'judul_moneybox' => 'Keyboard',
