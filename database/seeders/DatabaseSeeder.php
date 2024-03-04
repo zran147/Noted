@@ -70,14 +70,14 @@ class DatabaseSeeder extends Seeder
             'slug' => 'kuliah',   
         ]);
 
-        Moneybox::create([
-            'judul_moneybox' => 'Keyboard',
-            'slug' => 'keyboard',
-            'target_moneybox' => 200000,
-            'nominal_moneybox' => 10000,
-            'tanggal_selesai' => '2023-06-15',
-            'usersmoneybox_id' => 2
-        ]);
+        // Moneybox::create([
+        //     'judul_moneybox' => 'Keyboard',
+        //     'slug' => 'keyboard',
+        //     'target_moneybox' => 200000,
+        //     'nominal_moneybox' => 10000,
+        //     'tanggal_selesai' => '2023-06-15',
+        //     'usersmoneybox_id' => 2
+        // ]);
     }
 }
 
