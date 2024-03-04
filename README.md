@@ -1,5 +1,6 @@
 # Noted
 Noted adalah website pencatatan keuangan dan penyimpanan catatan sebagai tugas akhir mata kuliah RPL Ilmu Komputer IPB University Semester 4. Kelompok kami terdiri dari saya, Muhammad Zahran sebagai penanggung jawab front-end, Salma Nadhira Danuningrat sebagai penanggung jawab back-end, dan Pramudya Oktareza sebagai penanggung jawab UI.
+
 ## Instalasi
 Pastikan sudah install composer dan mysql. Buatlah user baru dan database baru pada mysql.
 ```bash
@@ -13,14 +14,15 @@ php artisan storage:link
 php artisan key:generate
 php artisan migrate:fresh --seed
 ```
-### Notes to self
-#### Kalo make Ubuntu
+
+## Notes to self
+### Kalo make Ubuntu
 ```bash
 sudo apt install php-curl
 sudo apt install php-mysql
 sudo apt install php-xml
 ```
-#### Kalo make Apache2
+### Kalo make Apache2
 Andaikan webroot ada di `/var/www/html`, maka isi `/var/www/html/.htaccess` adalah:
 ```apache
 <IfModule mod_rewrite.c>
